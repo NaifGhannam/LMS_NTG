@@ -1,0 +1,63 @@
+//
+//  ForgotPasswordView.swift
+//  LMS_NTG_Project
+//
+//  Created by Tahani on 20/01/1447 AH.
+//
+
+import SwiftUI
+
+struct ForgotPasswordView: View {
+    
+    @State var email: String = ""
+    @State var password: String = ""
+    @State var confirmPassword: String = ""
+    
+    @Environment(\.dismiss) var dismiss
+    
+    var body: some View {
+        
+        ZStack(alignment: .top) {
+            
+            Color.black.opacity(0.18)
+                .ignoresSafeArea()
+            
+            VStack(spacing: 25) {
+                
+                ForgotPasswordHeader(action: {dismiss()})
+                
+                Spacer()
+                
+                Image(systemName: "lock.shield")
+                    .resizable()
+                    .frame(width: 90, height: 90)
+                    .foregroundColor(Color("PrimaryRed"))
+                
+                Text("Trouble Logging in?")
+                    .font(.system(size: 20, weight: .bold))
+                
+                Text("Enter your email and we'll send you \na link to reset your password.")
+                    .multilineTextAlignment(.center)
+                    .fixedSize(horizontal: false, vertical: true)
+                
+                
+                IconTextField(systemImage: "person.circle", title: "Email", text: $email)
+                
+                IconTextField(systemImage: "lock", title: "Password", text: $password)
+                
+                IconTextField(systemImage: "lock", title: "Confirm Password", text: $confirmPassword)
+                
+                PrimaryButton(title: "Reset Password")
+
+                Spacer()
+            }
+        }
+        .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
+        .ignoresSafeArea()
+    }
+}
+
+#Preview {
+    ForgotPasswordView()
+}
