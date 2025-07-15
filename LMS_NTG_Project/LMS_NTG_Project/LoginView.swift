@@ -44,6 +44,7 @@ struct loginBox: View {
     @State private var email: String = ""
     @State private var password : String = ""
     @State private var rememberMe : Bool = false
+    @State private var showPassword: Bool = false
     
     var body: some View {
         
@@ -71,7 +72,19 @@ struct loginBox: View {
                     HStack{
                         Image(systemName: "lock")
                             .foregroundColor(.red)
-                    SecureField("Password",text: $password)
+                        Group {
+                                   if showPassword {
+                                       TextField("Password", text: $password)
+                                   } else {
+                                       SecureField("Password", text: $password)
+                                   }
+                               }
+                        Button(action: {
+                                    showPassword.toggle()
+                                }) {
+                                    Image(systemName: showPassword ? "eye.slash.fill" : "eye.fill")
+                                        .foregroundColor(.gray)
+                                }
                 }
                         .padding(.horizontal, 20)
                         .padding(.vertical, 10)
