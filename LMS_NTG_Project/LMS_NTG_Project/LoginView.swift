@@ -20,7 +20,7 @@ struct LoginView: View {
                     .foregroundColor(.white)
                     .cornerRadius(20)
                     .ignoresSafeArea(.all)
-
+                
                 Spacer()
             }
             VStack{
@@ -33,7 +33,7 @@ struct LoginView: View {
                 Spacer()
             }
         }
-
+        
         
     }
 }
@@ -73,35 +73,35 @@ struct loginBox: View {
                         Image(systemName: "lock")
                             .foregroundColor(.red)
                         Group {
-                                   if showPassword {
-                                       TextField("Password", text: $password)
-                                   } else {
-                                       SecureField("Password", text: $password)
-                                   }
-                               }
+                            if showPassword {
+                                TextField("Password", text: $password)
+                            } else {
+                                SecureField("Password", text: $password)
+                            }
+                        }
                         Button(action: {
-                                    showPassword.toggle()
-                                }) {
-                                    Image(systemName: showPassword ? "eye.slash.fill" : "eye.fill")
-                                        .foregroundColor(.gray)
-                                }
-                }
-                        .padding(.horizontal, 20)
-                        .padding(.vertical, 10)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 50)
-                                .stroke(Color.gray, lineWidth: 1)
-                        )
-                        .padding()
+                            showPassword.toggle()
+                        }) {
+                            Image(systemName: showPassword ? "eye.slash.fill" : "eye.fill")
+                                .foregroundColor(.gray)
+                        }
+                    }
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 10)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 50)
+                            .stroke(Color.gray, lineWidth: 1)
+                    )
+                    .padding()
                     
                     HStack{
-                     CustomCheckbox(isChecked: $rememberMe, label: "Remember Me")
+                        CustomCheckbox(isChecked: $rememberMe, label: "Remember Me")
                             .foregroundColor(Color.red)
                             .padding(.trailing)
-                           
+                        
                         Text("Forgot Password?")
                             .foregroundColor(Color.red)
-                            
+                        
                         
                     }
                     Button{
@@ -117,9 +117,9 @@ struct loginBox: View {
                     }
                     
                 }
-              
-)
-
+                
+            )
+        
         
     }
 }
@@ -129,7 +129,7 @@ struct loginBox: View {
 struct CustomCheckbox: View {
     @Binding var isChecked: Bool
     var label: String
-
+    
     var body: some View {
         HStack {
             Button(action: {
