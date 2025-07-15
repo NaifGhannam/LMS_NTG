@@ -12,23 +12,22 @@ struct LoginView: View {
     var body: some View {
         
         ZStack{
-            Color.red.edgesIgnoringSafeArea(.all)
-            VStack{
+            Color("PrimaryRed").edgesIgnoringSafeArea(.all)
+            VStack {
                 Rectangle()
-                    .fill(Color.gray)
-                    .frame(width: .infinity, height: 600)
-                    .foregroundColor(.white)
+                    .fill(Color("LightGray"))
+                    .frame(
+                        maxWidth: .infinity,
+                        maxHeight: UIScreen.main.bounds.height * 0.65
+                    )
                     .cornerRadius(20)
                     .ignoresSafeArea(.all)
-
                 Spacer()
             }
             VStack{
                 Image("NTG_LMS_LOGO")
                     .resizable()
-                    .frame(width: 500, height: 250)
-                    .padding(.top, 50)
-                    .ignoresSafeArea(.all)
+                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.3)
                 loginBox()
                 Spacer()
             }
@@ -39,6 +38,9 @@ struct LoginView: View {
 }
 
 
+
+
+
 struct loginBox: View {
     
     @State private var email: String = ""
@@ -47,82 +49,102 @@ struct loginBox: View {
     @State private var showPassword: Bool = false
     
     var body: some View {
-        
-        Rectangle()
-            .fill(Color.white)
-            .frame(width: 350, height: 400)
-            .cornerRadius(20)
-            .overlay(
-                VStack{
-                    HStack {
-                        Image(systemName: "person")
-                            .foregroundColor(.red)
-                        
-                        TextField("Email", text: $email)
-                    }
-                    .padding(.horizontal, 20)
-                    .padding(.vertical, 10)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 50)
-                            .stroke(Color.gray, lineWidth: 1)
-                    )
-                    .padding()
-                    
-                    
-                    HStack{
-                        Image(systemName: "lock")
-                            .foregroundColor(.red)
-                        Group {
-                                   if showPassword {
-                                       TextField("Password", text: $password)
-                                   } else {
-                                       SecureField("Password", text: $password)
-                                   }
-                               }
-                        Button(action: {
-                                    showPassword.toggle()
-                                }) {
-                                    Image(systemName: showPassword ? "eye.slash.fill" : "eye.fill")
-                                        .foregroundColor(.gray)
-                                }
-                }
-                        .padding(.horizontal, 20)
-                        .padding(.vertical, 10)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 50)
-                                .stroke(Color.gray, lineWidth: 1)
-                        )
-                        .padding()
-                    
-                    HStack{
-                     CustomCheckbox(isChecked: $rememberMe, label: "Remember Me")
-                            .foregroundColor(Color.red)
-                            .padding(.trailing)
-                           
-                        Text("Forgot Password?")
-                            .foregroundColor(Color.red)
-                            
-                        
-                    }
-                    Button{
-                        print("Login")
-                    }label: {
-                        Text("Login")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .frame(width: 320, height: 50)
-                            .background(Color.red)
-                            .cornerRadius(20)
-                            .padding(.top, 10)
-                    }
-                    
-                }
-              
-)
+        VStack() {
+            // Email Field
+            HStack {
+                Image(systemName: "person.fill")
+                    .foregroundColor(Color("PrimaryRed"))
+                
+                TextField("Email", text: $email)
+                    .foregroundColor(.gray)
+            }
+            .padding()
+            .background(Color(red: 0.95, green: 0.92, blue: 0.92)) // light gray
+            .cornerRadius(25)
+            .padding(.horizontal)
+            .padding(.top, 30)
 
+            // Password Field
+            HStack {
+                Image(systemName: "lock.fill")
+                    .foregroundColor(Color("PrimaryRed"))
+                
+                Group {
+                    if showPassword {
+                        TextField("Password", text: $password)
+                    } else {
+                        SecureField("Password", text: $password)
+                    }
+                }
+                .foregroundColor(.gray)
+
+                Button(action: {
+                    showPassword.toggle()
+                }) {
+                    Image(systemName: showPassword ? "eye.slash.fill" : "eye.fill")
+                        .foregroundColor(.red.opacity(0.6))
+                }
+            }
+            .padding()
+            .background(Color(red: 0.95, green: 0.92, blue: 0.92))
+            .cornerRadius(25)
+            .padding(.horizontal)
+            .padding(.top, 30)
+            .padding(.bottom, 10)
+            // Remember Me & Forgot Password
+            
+            
+            
+            HStack {
+                            HStack(spacing: 5) {
+                                Button(action: {
+                                    rememberMe.toggle()
+                                }) {
+                                    Image(systemName: rememberMe ? "checkmark.square.fill" : "square")
+                                        .foregroundColor(Color("PrimaryRed"))
+                                }
+                                Text("Remember Me")
+                                    .foregroundColor(Color("PrimaryRed"))
+                                    .font(.footnote)
+                            }
+
+                            Spacer()
+
+                            Button(action: {
+                                print("Forgot Password?")
+                            }) {
+                                Text("Forgot Password?")
+                                    .foregroundColor(Color("PrimaryRed"))
+                                    .font(.footnote)
+                            }
+                        }
+                        .padding(.horizontal, 30)
+                        .padding(.top, 10)
+            
+            // Login Button
+            Button(action: {
+                print("Login tapped")
+            }) {
+                Text("Login")
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity, minHeight: 50)
+                    .background(Color("PrimaryRed"))
+                    .cornerRadius(25)
+            }
+            .padding(.horizontal)
+            .padding(.bottom, 26)
+        }
+        .padding(.vertical)
+        .background(Color.white)
+        .cornerRadius(20)
+        .shadow(color: .gray.opacity(0.2), radius: 10, x: 0, y: 4)
+        .frame(maxWidth: .infinity)
+        .padding(.horizontal, 10)
         
     }
 }
+
 
 
 
