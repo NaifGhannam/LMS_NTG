@@ -17,16 +17,17 @@ struct Admin_dashoard: View {
             ScrollView {
                 VStack{
                     Text("Admin Dashoard")
-                        .font(.system(size: 40 , weight: .bold))
-                        .font(.headline)
-                        .foregroundColor(.red)
-                        .padding()
+                        .font(.title)
+                        .foregroundColor(Color("PrimaryRed"))
+                        .padding(.trailing, 150)
+                        .bold()
+                        
                     
                     Button{
                         
                     } label: {
                         HStack{
-                            Text("Add New User")
+                            Text("Filter Date Range")
                                 .font(.system(size: 25 , weight: .medium))
                                 .font(.headline)
                                 .foregroundColor(.gray)
@@ -35,7 +36,7 @@ struct Admin_dashoard: View {
                             
                             
                             Image(systemName: "chevron.right")
-                                .foregroundColor(.red)
+                                .foregroundColor(Color("PrimaryRed"))
                                 .font(.system(size:25))
                             
                         }
@@ -75,13 +76,13 @@ struct UserCountCard : View {
                 Text("\(userCount)")
                     .font(.system(size: 30, weight: .bold, design: .default))
                     .padding()
-                    .foregroundColor(.red)
+                    .foregroundColor(Color("PrimaryRed"))
                     .alignmentGuide(.top) { $0[.bottom] }
                     
                 
                 Image(systemName: "person.fill.badge.plus")
                     .resizable()
-                    .foregroundColor(.red)
+                    .foregroundColor(Color("PrimaryRed"))
                     .frame(width: 30, height: 30)
                     
                     
@@ -116,7 +117,7 @@ struct DailyAtndnceCard : View {
                 
                 Image(systemName: "gear")
                     .resizable()
-                    .foregroundColor(.red)
+                    .foregroundColor(Color("PrimaryRed"))
                     .frame(width: 30, height: 30)
                     .padding(.trailing)
             }
@@ -124,13 +125,13 @@ struct DailyAtndnceCard : View {
                 Text("\(dailyAtndnce)")
                     .font(.system(size: 30, weight: .bold, design: .default))
                     .padding()
-                    .foregroundColor(.red)
+                    .foregroundColor(Color("PrimaryRed"))
                     .alignmentGuide(.top) { $0[.bottom] }
                     
                 
                 Image(systemName: "percent")
                     .resizable()
-                    .foregroundColor(.red)
+                    .foregroundColor(Color("PrimaryRed"))
                     .frame(width: 30, height: 30)
                     
                     
@@ -150,24 +151,25 @@ struct UpComingExamsCard : View {
         VStack{
             HStack{
                 
-                    Text("UpComing Exams")
+                    Text("Upcoming Exams")
                         .font(.title2)
                         .foregroundColor(.gray)
                         .alignmentGuide(.top) { $0[.bottom] }
-                        .padding(.trailing , 30)
+                        .padding(.trailing , 140)
+                        .padding(.top , 10)
                   
                 Image(systemName: "gear")
                     .resizable()
-                    .foregroundColor(.red)
+                    .foregroundColor(Color("PrimaryRed"))
                     .frame(width: 30, height: 30)
+                    .padding(.top , 20)
             }
-            .padding()
       
                 Text("\(count)")
                     .font(.system(size: 30, weight: .bold, design: .default))
-                    .padding()
-                    .foregroundColor(.red)
+                    .foregroundColor(Color("PrimaryRed"))
                     .alignmentGuide(.leading) { $0[.bottom]}
+                    .padding(.trailing , 300)
                     
 
             
