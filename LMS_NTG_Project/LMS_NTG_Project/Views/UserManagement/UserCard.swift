@@ -8,16 +8,12 @@
 import SwiftUI
 
 struct UserCard : View {
-    var isActive : Bool = false
+    var isActive : Bool = true
     var userType : UserType = .admin
-    var username : String = "jenny"
+    var username : String = "jenny Wilson"
     var email : String = "Jenny.wilson@gmail.com"
     
     var body: some View {
-      
-        ZStack{
-            Color.gray.edgesIgnoringSafeArea(.all)
-            
             HStack{
                 VStack{
                     VStack(alignment: .leading){
@@ -37,7 +33,6 @@ struct UserCard : View {
                                 .background(isActive ? Color.green.opacity(0.2) : Color.gray.opacity(0.2))
                                 .cornerRadius(10)
                                 .padding(.leading , 10)
-                                
                         }
                     }
             }
@@ -69,13 +64,18 @@ struct UserCard : View {
             .frame(maxWidth: .infinity , alignment: .leading)
             .padding()
             .background(Color.white)
-            .border(.black)
+            .overlay(
+                RoundedRectangle(cornerRadius: 20)
+                    .stroke(Color.black.opacity(0.15), lineWidth: 1)
+            )
             .cornerRadius(20)
-            .padding(.horizontal)
+           
+        // Using overlay + RoundedRectangle instead of .border()
+        // .border() does NOT respect cornerRadius and draws a full rectangle
+        // RoundedRectangle with .stroke() matches the corner radius perfectly
             
             
                 
-        }
+        
     }
 }
-

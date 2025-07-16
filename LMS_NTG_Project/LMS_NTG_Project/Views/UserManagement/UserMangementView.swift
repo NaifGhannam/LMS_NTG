@@ -9,7 +9,15 @@ import SwiftUI
 
 struct UserMangementView: View {
     var body: some View {
-        UserCard()
+       
+        VStack{
+            UserManagementHeader(searchText: .constant(""))
+            List(1 ... 10 , id: \.self ){
+                _ in
+                UserCard()
+            }.listStyle(PlainListStyle())
+        }
+       
     }
 }
 
