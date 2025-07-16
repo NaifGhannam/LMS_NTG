@@ -17,7 +17,9 @@ struct ForgotPasswordHeader: View {
             
             RoundedRectangle(cornerRadius: 20)
                 .fill(Color("PrimaryRed"))
-                .frame(height: UIScreen.main.bounds.size.width * 0.65)
+                //.frame(height: UIScreen.main.bounds.size.width * 0.65)
+                .frame(height: UIScreen.main.bounds.size.height * 0.26)
+                .ignoresSafeArea(edges: .top) // ✅ extend over status bar
                 .overlay {
                     
                     VStack(alignment: .leading) {
@@ -27,8 +29,7 @@ struct ForgotPasswordHeader: View {
                                 .resizable()
                                 .frame(width: 30, height: 30)
                         }
-                        .padding(.bottom, 10)
-                        
+                        .padding(.bottom, 10)                        
                         Text("FORGOT \nPASSWORD")
                             .font(.largeTitle)
                             .bold()
@@ -41,6 +42,6 @@ struct ForgotPasswordHeader: View {
     }
 }
 
-#Preview {
-    ForgotPasswordHeader()
-}
+//#Preview {
+//    ForgotPasswordHeader()
+//}

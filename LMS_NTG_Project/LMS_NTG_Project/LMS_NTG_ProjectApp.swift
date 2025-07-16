@@ -11,8 +11,8 @@ import SwiftUI
 struct LMS_NTG_ProjectApp: App {
     var body: some Scene {
         WindowGroup {
-//            ForgotPasswordView()
-            LoginView()
+            ForgotPasswordView()
+//            LoginView()
         }
     }
 }

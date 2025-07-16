@@ -16,21 +16,18 @@ struct ForgotPasswordView: View {
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
-        
+    
+                
         ZStack(alignment: .top) {
-            
-            Color.black.opacity(0.18)
-                .ignoresSafeArea()
-            
-            VStack(spacing: 25) {
-                
-                ForgotPasswordHeader(action: {dismiss()})
-                
-                Spacer()
-                
+                    Color("LightGray")
+                        .ignoresSafeArea() // ensures full background
+
+                    VStack(spacing: 25) {
+                        ForgotPasswordHeader(action: { dismiss() })
+                        Spacer()
                 Image(systemName: "lock.shield")
                     .resizable()
-                    .frame(width: 90, height: 90)
+                    .frame(width: 90, height: 100)
                     .foregroundColor(Color("PrimaryRed"))
                 
                 Text("Trouble Logging in?")
@@ -52,12 +49,13 @@ struct ForgotPasswordView: View {
                 Spacer()
             }
         }
+        .background(Color("LightGray").ignoresSafeArea()) // ✅ This ensures full coverage
+
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
-        .ignoresSafeArea()
     }
 }
 
-#Preview {
-    ForgotPasswordView()
-}
+//#Preview {
+//    ForgotPasswordView()
+//}
