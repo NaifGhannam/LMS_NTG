@@ -12,6 +12,8 @@ struct IconTextField: View {
     let systemImage: String
     let title: String
     @Binding var text: String
+    @State var showPassword: Bool = false
+    var isSecureField: Bool = false
     
     var body: some View {
         
@@ -20,8 +22,22 @@ struct IconTextField: View {
                 .foregroundColor(Color("PrimaryRed"))
                 .font(.system(size: 30))
             
-            TextField(title, text: $text)
-                .autocapitalization(.none)
+            Group {
+                if isSecureField && !showPassword {
+                    SecureField(title, text: $text)
+                } else {
+                    TextField(title, text: $text)
+                }
+            }
+            
+            if isSecureField {
+                Button(action: {
+                    showPassword.toggle()
+                }) {
+                    Image(systemName: showPassword ? "eye.slash.fill" : "eye.fill")
+                        .foregroundColor(Color("PrimaryRed").opacity(0.5))
+                }
+            }
         }
         .padding(.horizontal)
         .frame(height: 50)
