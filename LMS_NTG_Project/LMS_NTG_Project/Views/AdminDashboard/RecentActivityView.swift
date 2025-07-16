@@ -27,11 +27,12 @@ struct RecentActivityView: View {
                     Text("Action")
                 }
                 .frame(maxWidth: .infinity, alignment: .center)
-                .padding()
+                .padding(10)
+                .padding(.horizontal, 10)
                 .background(.white)
                 .foregroundColor(.gray)
-                .font(.title2)
-                .cornerRadius(20)
+                .font(.title)
+                .cornerRadius(15)
                 
                 VStack {
                     
@@ -44,18 +45,20 @@ struct RecentActivityView: View {
                             Text("Login")
                         }
                         .frame(maxWidth: .infinity, alignment: .center)
-                        .padding()
+                        .padding(10)
                         .background(Color.white)
                     }
                 }
+                .padding()
                 .background(Color.white)
                 .cornerRadius(20)
             }
-            .padding(.horizontal, 25)
+            .padding(.horizontal, 15)
         }
     }
 }
 
 #Preview {
     RecentActivityView()
+        .background(Color("PrimaryLightGray"))
 }
