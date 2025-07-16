@@ -45,7 +45,7 @@ struct ForgotPasswordView: View {
                 
                 IconTextField(systemImage: "lock", title: "Password", text: $password)
                 
-                IconTextField(systemImage: "lock", title: "Confirm Password", text: $confirmPassword)
+                IconTextField(systemImage: "lock", title: "Confirm Password", text: $confirmPassword, isSecureField: true)
                 
                 PrimaryButton(title: "Reset Password")
 
