@@ -11,9 +11,10 @@ struct Admin_dashoard: View {
     var body: some View {
         
         ZStack{
-            Color.gray
-                .opacity(0.3)
+            
+            Color("PrimaryLightGray")
                 .ignoresSafeArea()
+            
             ScrollView {
                 VStack{
                     Text("Admin Dashoard")
@@ -54,11 +55,14 @@ struct Admin_dashoard: View {
                     UpComingExamsCard()
                     
                     Spacer()
+                        .frame(height: 30)
                     
                     RecentActivityView()
                 }
             }
         }
+        .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
     }
 }
 
