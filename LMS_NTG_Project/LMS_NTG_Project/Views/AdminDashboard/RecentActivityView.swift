@@ -9,55 +9,49 @@ import SwiftUI
 
 struct RecentActivityView: View {
     var body: some View {
-        ZStack {
-            
-            Color.black.opacity(0.18)
-                .ignoresSafeArea()
-            
-            ScrollView {
+    
+        ScrollView {
+            VStack(alignment: .leading, spacing: 8) {
                 
-                VStack(alignment: .leading, spacing: 8) {
-                    
-                    Text("Recent Activity Log")
-                        .font(.title)
-                        .foregroundColor(Color("PrimaryRed"))
-                        .padding(.bottom, 10)
-                        .bold()
-                    
-                    HStack {
-                        Text("Time")
-                        Spacer()
-                        Text("User")
-                        Spacer()
-                        Text("Action")
-                    }
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .padding()
-                    .background(.white)
-                    .foregroundColor(.gray)
-                    .font(.title2)
-                    .cornerRadius(20)
-                    
-                    VStack {
-                        
-                        ForEach(1...4, id: \.self) { _ in
-                            HStack {
-                                Text("4:00AM")
-                                Spacer()
-                                Text("User1")
-                                Spacer()
-                                Text("Login")
-                            }
-                            .frame(maxWidth: .infinity, alignment: .center)
-                            .padding()
-                            .background(Color.white)
-                        }
-                    }
-                    .background(Color.white)
-                    .cornerRadius(20)
+                Text("Recent Activity Log")
+                    .font(.title)
+                    .foregroundColor(Color("PrimaryRed"))
+                    .padding(.bottom, 10)
+                    .bold()
+                
+                HStack {
+                    Text("Time")
+                    Spacer()
+                    Text("User")
+                    Spacer()
+                    Text("Action")
                 }
-                .padding(.horizontal, 25)
+                .frame(maxWidth: .infinity, alignment: .center)
+                .padding()
+                .background(.white)
+                .foregroundColor(.gray)
+                .font(.title2)
+                .cornerRadius(20)
+                
+                VStack {
+                    
+                    ForEach(1...4, id: \.self) { _ in
+                        HStack {
+                            Text("4:00AM")
+                            Spacer()
+                            Text("User1")
+                            Spacer()
+                            Text("Login")
+                        }
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .padding()
+                        .background(Color.white)
+                    }
+                }
+                .background(Color.white)
+                .cornerRadius(20)
             }
+            .padding(.horizontal, 25)
         }
     }
 }

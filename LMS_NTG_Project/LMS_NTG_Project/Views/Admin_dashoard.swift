@@ -14,49 +14,49 @@ struct Admin_dashoard: View {
             Color.gray
                 .opacity(0.3)
                 .ignoresSafeArea()
-        
-            VStack{
-                Text("Admin Dashoard")
-                    .font(.system(size: 40 , weight: .bold))
-                    .font(.headline)
-                    .foregroundColor(.red)
-                    .padding()
-                
-                Button{
+            ScrollView {
+                VStack{
+                    Text("Admin Dashoard")
+                        .font(.system(size: 40 , weight: .bold))
+                        .font(.headline)
+                        .foregroundColor(.red)
+                        .padding()
                     
-                } label: {
-                    HStack{
-                        Text("Add New User")
-                            .font(.system(size: 25 , weight: .medium))
-                            .font(.headline)
-                            .foregroundColor(.gray)
-                            .padding(.trailing ,70)
-                            
-                            
+                    Button{
                         
-                        Image(systemName: "chevron.right")
-                            .foregroundColor(.red)
-                            .font(.system(size:25))
+                    } label: {
+                        HStack{
+                            Text("Add New User")
+                                .font(.system(size: 25 , weight: .medium))
+                                .font(.headline)
+                                .foregroundColor(.gray)
+                                .padding(.trailing ,70)
                             
+                            
+                            
+                            Image(systemName: "chevron.right")
+                                .foregroundColor(.red)
+                                .font(.system(size:25))
+                            
+                        }
+                        .frame(width: 370, height: 70)
+                        .background(Color.white)
+                        .cornerRadius(10)
+                        
+                        
                     }
-                    .frame(width: 370, height: 70)
-                    .background(Color.white)
-                    .cornerRadius(10)
-                
-                 
-                }
-                
-                HStack{
-                    UserCountCard()
-                    DailyAtndnceCard()
-                }
-                UpComingExamsCard()
                     
-                
-                
-                Spacer()
+                    HStack {
+                        UserCountCard()
+                        DailyAtndnceCard()
+                    }
+                    UpComingExamsCard()
+                    
+                    Spacer()
+                    
+                    RecentActivityView()
+                }
             }
-            
         }
     }
 }
