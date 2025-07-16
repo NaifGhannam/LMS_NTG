@@ -15,7 +15,7 @@ struct LoginView: View {
             Color("PrimaryRed").edgesIgnoringSafeArea(.all)
             VStack {
                 Rectangle()
-                    .fill(Color("LightGray"))
+                    .fill(Color("PrimaryLightGray"))
                     .frame(
                         maxWidth: .infinity,
                         maxHeight: UIScreen.main.bounds.height * 0.65
@@ -32,7 +32,7 @@ struct LoginView: View {
                 Spacer()
             }
         }
-
+        
         
     }
 }
@@ -63,7 +63,7 @@ struct loginBox: View {
             .cornerRadius(25)
             .padding(.horizontal)
             .padding(.top, 30)
-
+            
             // Password Field
             HStack {
                 Image(systemName: "lock.fill")
@@ -77,7 +77,7 @@ struct loginBox: View {
                     }
                 }
                 .foregroundColor(.gray)
-
+                
                 Button(action: {
                     showPassword.toggle()
                 }) {
@@ -96,35 +96,32 @@ struct loginBox: View {
             
             
             HStack {
-                            HStack(spacing: 5) {
-                                Button(action: {
-                                    rememberMe.toggle()
-                                }) {
-                                    Image(systemName: rememberMe ? "checkmark.square.fill" : "square")
-                                        .foregroundColor(Color("PrimaryRed"))
-                                }
-                                Text("Remember Me")
-                                    .foregroundColor(Color("PrimaryRed"))
-                                    .font(.footnote)
-                            }
-
-                            Spacer()
-
-                            Button(action: {
-                                print("Forgot Password?")
-                            }) {
-                                Text("Forgot Password?")
-                                    .foregroundColor(Color("PrimaryRed"))
-                                    .font(.footnote)
-                            }
-                        }
-                        .padding(.horizontal, 30)
-                        .padding(.top, 10)
+                HStack(spacing: 5) {
+                    Button(action: {
+                        rememberMe.toggle()
+                    }) {
+                        Image(systemName: rememberMe ? "checkmark.square.fill" : "square")
+                            .foregroundColor(Color("PrimaryRed"))
+                    }
+                    Text("Remember Me")
+                        .foregroundColor(Color("PrimaryRed"))
+                        .font(.footnote)
+                }
+                
+                Spacer()
+                
+                NavigationLink (destination: ForgotPasswordView()) {
+                    Text("Forgot Password?")
+                        .foregroundColor(Color("PrimaryRed"))
+                        .font(.footnote)
+                }
+                
+            }
+            .padding(.horizontal, 30)
+            .padding(.top, 10)
             
             // Login Button
-            Button(action: {
-                print("Login tapped")
-            }) {
+            NavigationLink(destination: Admin_dashoard()) {
                 Text("Login")
                     .fontWeight(.bold)
                     .foregroundColor(.white)
@@ -151,7 +148,7 @@ struct loginBox: View {
 struct CustomCheckbox: View {
     @Binding var isChecked: Bool
     var label: String
-
+    
     var body: some View {
         HStack {
             Button(action: {

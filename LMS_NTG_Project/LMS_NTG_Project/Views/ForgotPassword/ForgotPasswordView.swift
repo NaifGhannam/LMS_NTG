@@ -16,11 +16,10 @@ struct ForgotPasswordView: View {
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
-    
                 
         ZStack(alignment: .top) {
-                    Color("LightGray")
-                        .ignoresSafeArea() // ensures full background
+                    Color("PrimaryLightGray")
+                        .ignoresSafeArea()
 
                     VStack(spacing: 25) {
                         ForgotPasswordHeader(action: { dismiss() })
@@ -37,7 +36,6 @@ struct ForgotPasswordView: View {
                     .multilineTextAlignment(.center)
                     .fixedSize(horizontal: false, vertical: true)
                 
-                
                 IconTextField(systemImage: "person.circle", title: "Email", text: $email)
                 
                 IconTextField(systemImage: "lock", title: "Password", text: $password)
@@ -49,13 +47,12 @@ struct ForgotPasswordView: View {
                 Spacer()
             }
         }
-        .background(Color("LightGray").ignoresSafeArea()) // ✅ This ensures full coverage
-
+        .background(Color("PrimaryLightGray").ignoresSafeArea())
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
     }
 }
 
-//#Preview {
-//    ForgotPasswordView()
-//}
+#Preview {
+    ForgotPasswordView()
+}
