@@ -46,7 +46,6 @@ struct UserManagementHeader: View {
                     .padding(.top, 20)
                 }
                 .ignoresSafeArea()
-            Spacer()
         }
     }
 }
