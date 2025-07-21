@@ -9,11 +9,13 @@ import SwiftUI
 
 struct StudentDashboardView: View {
     var body: some View {
+        
         ScrollView {
+            
             StudentDashboardHeader()
+            
             VStack(spacing: 20) {
               
-                    
                 UpcomingSessionsView()
                 Progress()
                 UpcomingSessionsView()

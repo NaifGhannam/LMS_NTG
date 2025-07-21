@@ -20,13 +20,14 @@ struct UpcomingSessionsView: View {
         ZStack {
             RoundedRectangle(cornerRadius: 25)
                 .foregroundColor(Color("PrimaryPink"))
+                .shadow(color: .black.opacity(0.3), radius: 5, y: 3)
             
             VStack {
                 
                 Text("Upcoming Sessions")
-                    .font(.system(size: 22, weight: .bold))
+                    .font(.system(size: 20, weight: .semibold))
                     .foregroundColor(Color("PrimaryRed"))
-                    .padding(14)
+                    .padding(.bottom, 10)
                 
                 ForEach(upcomingSessions, id: \.id) { session in
                     
@@ -38,15 +39,15 @@ struct UpcomingSessionsView: View {
                         Text("\(session.date), \(session.time)")
                     }
                     .foregroundColor(Color("DarkRed"))
-                    .padding(.horizontal)
+                    .font(.system(size: 14))
+                    .padding(.horizontal, 25)
                 }
                 
                 Spacer()
             }
             .padding()
         }
-        .shadow(color: .black.opacity(0.3), radius: 5, y: 3)
-        .frame(minHeight: 200)
+        .frame(minHeight: 150)
     }
 }
 

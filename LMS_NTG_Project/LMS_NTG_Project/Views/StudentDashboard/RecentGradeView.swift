@@ -20,13 +20,14 @@ struct RecentGradeView: View {
         ZStack {
             RoundedRectangle(cornerRadius: 25)
                 .foregroundColor(Color("PrimaryPink"))
+                .shadow(color: .black.opacity(0.3), radius: 5, y: 3)
             
             VStack {
                 
-                Text("Upcoming Sessions")
-                    .font(.system(size: 22, weight: .bold))
+                Text("Recent Grade")
+                    .font(.system(size: 20, weight: .semibold))
                     .foregroundColor(Color("PrimaryRed"))
-                    .padding(14)
+                    .padding(.bottom, 10)
                 
                 ForEach(recentGrades, id: \.id) { grade in
                     
@@ -36,22 +37,24 @@ struct RecentGradeView: View {
                         Spacer()
                         
                         Text(grade.grade)
+                            .frame(width: 35, alignment: .leading)
                     }
                     .foregroundColor(Color("DarkRed"))
-                    .padding(.horizontal)
+                    .font(.system(size: 14))
+                    .padding(.horizontal, 25)
                 }
                 
                 Spacer()
             }
             .padding()
         }
-        .shadow(color: .black.opacity(0.3), radius: 5, y: 3)
-        .frame(minHeight: 200)
+        .frame(minHeight: 150)
     }
 }
 
 #Preview {
     RecentGradeView()
+        .padding(.horizontal, 50)
 }
 
 struct Grade: Identifiable {
