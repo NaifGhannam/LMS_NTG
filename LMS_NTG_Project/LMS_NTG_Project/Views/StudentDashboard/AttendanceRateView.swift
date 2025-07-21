@@ -22,7 +22,7 @@ struct AttendanceRateView: View {
             HStack {
                 
                 Text("Attendance Rate")
-                    .font(.system(size: 20, weight: .semibold))
+                    .font(.system(size: 19, weight: .semibold))
                     .foregroundColor(Color("PrimaryRed"))
                     .frame(maxHeight: .infinity, alignment: .topLeading)
                     .padding(.leading, 4)
@@ -40,7 +40,7 @@ struct AttendanceRateView: View {
             }
             .padding()
         }
-        .frame(height: 80)
+        .frame(height: 95)
     }
 }
 
