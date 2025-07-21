@@ -10,15 +10,21 @@ import SwiftUI
 struct StudentDashboardView: View {
     var body: some View {
         ScrollView {
+            StudentDashboardHeader()
             VStack(spacing: 20) {
+              
+                    
                 UpcomingSessionsView()
+                Progress()
                 UpcomingSessionsView()
+                Announcements()
                 UpcomingSessionsView()
                 UpcomingSessionsView()
             }
-            .padding(.horizontal, 50)
             
-        }
+            .padding(.horizontal, 30)
+            
+        }.ignoresSafeArea(.all, edges: .top)
     }
 }
 
