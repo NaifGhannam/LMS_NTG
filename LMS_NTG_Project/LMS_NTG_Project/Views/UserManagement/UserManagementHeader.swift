@@ -38,8 +38,9 @@ struct UserManagementHeader: View {
                                 .font(.system(size: 18))
                                 .frame(height: 55)
                         }
-                        .background(.white)
-                        .cornerRadius(12)
+                        .background(Color(.systemGray6))
+                        .clipShape(Capsule())
+                        .shadow(color: Color.black.opacity(0.05), radius: 1, x: 0, y: 1)
                         .padding(.horizontal, 8)
                     }
                     .frame(maxWidth: .infinity, alignment: .center)

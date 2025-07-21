@@ -12,10 +12,26 @@ struct UserMangementView: View {
        
         VStack{
             UserManagementHeader(searchText: .constant(""))
-            List(1 ... 10 , id: \.self ){
-                _ in
-                UserCard()
-            }.listStyle(PlainListStyle())
+            
+            ZStack {
+                Color.gray.opacity(0.2)
+                    .ignoresSafeArea()
+                
+                List(1 ... 10 , id: \.self ){
+                    _ in
+                    UserCard()
+                        .listRowSeparator(.hidden)
+                        .listRowInsets(EdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5))
+
+
+                }
+                .listStyle(PlainListStyle())
+                .padding(.top, -69)
+                
+                
+            }
+            
+           
         }
        
     }

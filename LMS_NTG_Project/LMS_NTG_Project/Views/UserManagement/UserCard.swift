@@ -18,7 +18,10 @@ struct UserCard : View {
                 VStack{
                     VStack(alignment: .leading){
                         Text("\(username)")
+                            .font(.headline)
                         Text("\(email)")
+                            .font(.subheadline)
+                                       .foregroundColor(.secondary)
                         
                         HStack{
                             Text("\(userType)")
@@ -61,7 +64,6 @@ struct UserCard : View {
                
                 
             }
-            .frame(maxWidth: .infinity , alignment: .leading)
             .padding()
             .background(Color.white)
             .overlay(
@@ -69,7 +71,6 @@ struct UserCard : View {
                     .stroke(Color.black.opacity(0.15), lineWidth: 1)
             )
             .cornerRadius(20)
-           
         // Using overlay + RoundedRectangle instead of .border()
         // .border() does NOT respect cornerRadius and draws a full rectangle
         // RoundedRectangle with .stroke() matches the corner radius perfectly
@@ -78,4 +79,9 @@ struct UserCard : View {
                 
         
     }
+        
+}
+
+#Preview {
+    UserMangementView()
 }
