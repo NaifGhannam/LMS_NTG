@@ -33,7 +33,7 @@ struct Progress: View {
                     
                 }
                 .frame(maxWidth: .infinity , maxHeight: UIScreen.main.bounds.size.height * 0.20)
-                .background(Color("PrimaryPink"))
+                .background(Color("DarkPink"))
                 .cornerRadius(20)
                 .shadow(color: .black.opacity(0.3), radius: 5, y: 3)
     
