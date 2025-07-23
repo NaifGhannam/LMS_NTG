@@ -23,7 +23,7 @@ struct TeacherDashboardHeader: View {
                 Text("Teacher Dashboard")
                     .font(.system(size: 25))
                     .font(.headline)
-                    .fontWeight(.bold)
+                    .fontWeight(.medium)
                     .foregroundColor(Color.white)
                     .padding(.leading)
                     

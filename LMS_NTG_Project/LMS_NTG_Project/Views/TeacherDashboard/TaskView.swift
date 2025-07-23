@@ -10,14 +10,7 @@
 import SwiftUI
 
 struct TaskView   : View {
-    @State private var tasks: [TaskItem] = [
-        TaskItem(title: "Session number 1"),
-        TaskItem(title: "Session number 2"),
-        TaskItem(title: "Session number 3"),
-        TaskItem(title: "Session number 4"),
-        TaskItem(title: "Session number 5")
-        
-    ]
+    @Binding  var tasks: [TaskItem]
     
     var body: some View {
         ZStack {
@@ -40,28 +33,43 @@ struct TaskView   : View {
                         ForEach(tasks.indices, id: \.self) { index in
                             HStack{
                                 
-                                
+                                                                
+                                Text(tasks[index].title)
+                                    .font(.system(size: 24))
+                                    .foregroundColor(.primary)
+                                    .padding(.leading, 30)
+                                    .padding(3)
+                                   
+                                Spacer()
                                 Button(action: {
                                     tasks[index].isCompleted.toggle()
                                 }) {
                                     Image(systemName: tasks[index].isCompleted ? "checkmark.square.fill" : "square")
-                                        .foregroundColor(tasks[index].isCompleted ? .green : .gray)
+                                        .foregroundColor(tasks[index].isCompleted ? Color("PrimaryRed"): .gray)
                                         .font(.system(size: 22))
+                                        .padding(.trailing, 30)
                                 }
                                 
-                                Text(tasks[index].title)
-                                    .font(.system(size: 24))
-                                    .foregroundColor(.primary)
                                    
                             }
-                        }
-                    }
-                    .padding(.top, 5)
+                            .background(
+                                VStack {
+                                    Spacer()
+                                    Rectangle()
+                                        .frame(height: 1)
+                                        .foregroundColor(Color.gray.opacity(0.5))
+                                        .padding(.horizontal , 20)
+                                }
+                            )
+                            
+                        }                    }
+                    .padding(.vertical, 40)
+            
                 
             
         }
        
-        .padding(.horizontal , 50)
+        .padding(.horizontal , 20)
         .padding(.vertical , 15)
     }
 }
