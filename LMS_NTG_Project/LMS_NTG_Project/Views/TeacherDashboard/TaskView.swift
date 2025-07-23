@@ -68,8 +68,8 @@ struct TaskView   : View {
                 
             
         }
-       
-        .padding(.horizontal , 20)
+        .frame(maxHeight: UIScreen.main.bounds.height * 0.3)
+        .padding(.horizontal ,)
         .padding(.vertical , 15)
     }
 }

@@ -14,15 +14,15 @@ struct TeacherDashboard: View {
         TaskItem(title: "Session number 1"),
         TaskItem(title: "Session number 2"),
         TaskItem(title: "Session number 3")
-        
-    ]
+        ]
+    
     @State private var Exams: [TaskItem] = [
         TaskItem(title: "Exam number 1"),
         TaskItem(title: "Exam number 2"),
         TaskItem(title: "Exam number 3"),
         TaskItem(title: "Exam number 4")
-        
-    ]
+      ]
+    
     var body: some View {
         TeacherDashboardHeader()
         ScrollView{

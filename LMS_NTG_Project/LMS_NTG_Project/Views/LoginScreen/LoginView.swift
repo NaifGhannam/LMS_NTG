@@ -166,6 +166,6 @@ struct CustomCheckbox: View {
 
 
 
-//#Preview {
-//    LoginView()
-//}
+#Preview {
+    LoginView()
+}

@@ -12,7 +12,7 @@ struct LMS_NTG_ProjectApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                LoginView()
+                RolesPermissions()
             }
         }
     }
