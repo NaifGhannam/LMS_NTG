@@ -11,7 +11,9 @@ struct RolesPermissions: View {
     @State private var Roles: [TaskItem] = [
         TaskItem(title: "Role number 1"),
         TaskItem(title: "Role number 2"),
-        TaskItem(title: "Role number 3")
+        TaskItem(title: "Role number 3"),
+        TaskItem(title: "Role number 4"),
+        TaskItem(title: "Role number 5")
         ]
     
     @State private var permissions: [PermissionItem] = [
@@ -25,16 +27,16 @@ struct RolesPermissions: View {
         VStack(alignment : .leading){
             
             Text("Roles & Permissions")
-                .font(.title)
+                .font(.system(size:18))
                 .foregroundColor(Color("PrimaryRed"))
                 .bold()
                 .padding(.leading , 20)
                
             TaskView(tasks: $Roles)
            HStack{
-                Image(systemName: "key")
+               Image(systemName: "key")
                    .resizable()
-                   .frame(width: 40, height: 40)
+                   .frame(width: 16, height: 16)
                    .foregroundColor(Color.gray)
                    .padding()
                TextField("Role Description" , text: .constant(""))
@@ -42,16 +44,16 @@ struct RolesPermissions: View {
                    .foregroundColor(Color("PrimaryRed"))
                    .padding()
             }
-           .padding(.horizontal , 20)
-           .cornerRadius(25)
+           .padding(.horizontal , 30)
+           .cornerRadius(10)
            .overlay(
-            RoundedRectangle(cornerRadius: 25)
+            RoundedRectangle(cornerRadius: 10)
                 .stroke(style: StrokeStyle(lineWidth: 2))
                 .foregroundColor(Color("PrimaryRed"))
            )
-           .padding()
+           .padding(.horizontal , 30)
            .shadow(color : .black.opacity(0.5), radius: 5 , x: 5, y: 5)
-            
+           .padding(.vertical, 30)
             
             // 3 checkbox
             VStack{
@@ -90,7 +92,7 @@ struct RolesPermissions: View {
                         .font(.headline)
                         .foregroundColor(Color.white)
                         .frame(maxWidth: .infinity)
-                        .padding(.horizontal ,)
+                        .padding(.horizontal)
                         .padding(.vertical, 20)
                         .background(Color("PrimaryRed"))
                         .cornerRadius(50)
@@ -106,7 +108,7 @@ struct RolesPermissions: View {
                         .font(.headline)
                         .foregroundColor(Color.white)
                         .frame(maxWidth: .infinity)
-                        .padding(.horizontal , )
+                        .padding(.horizontal)
                         .padding(.vertical , 20)
                         .background(Color("PrimaryRed"))
                         .cornerRadius(50)

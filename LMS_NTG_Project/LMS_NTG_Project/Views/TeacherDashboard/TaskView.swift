@@ -35,7 +35,7 @@ struct TaskView   : View {
                                 
                                                                 
                                 Text(tasks[index].title)
-                                    .font(.system(size: 24))
+                                    .font(.system(size: 18))
                                     .foregroundColor(.primary)
                                     .padding(.leading, 30)
                                     .padding(3)
@@ -69,7 +69,7 @@ struct TaskView   : View {
             
         }
         .frame(maxHeight: UIScreen.main.bounds.height * 0.3)
-        .padding(.horizontal ,)
+        .padding(.horizontal,30)
         .padding(.vertical , 15)
     }
 }
