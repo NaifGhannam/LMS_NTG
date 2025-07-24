@@ -121,7 +121,8 @@ struct loginBox: View {
             .padding(.top, 10)
             
             // Login Button
-            NavigationLink(destination: Admin_dashoard()) {
+            //Admin_dashoard
+            NavigationLink(destination: MainTabView()) {
                 Text("Login")
                     .fontWeight(.bold)
                     .foregroundColor(.white)
