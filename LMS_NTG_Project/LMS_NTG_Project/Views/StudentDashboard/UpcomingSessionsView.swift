@@ -51,10 +51,10 @@ struct UpcomingSessionsView: View {
     }
 }
 
-#Preview {
-    UpcomingSessionsView()
-        .padding(.horizontal, 50)
-}
+//#Preview {
+//    UpcomingSessionsView()
+//        .padding(.horizontal, 50)
+//}
 
 struct Session: Identifiable {
     

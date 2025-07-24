@@ -17,6 +17,7 @@ struct StudentDashboardView: View {
             VStack(spacing: 20) {
               
                 UpcomingSessionsView()
+                    .padding(.top,20)
                 Progress()
                 Announcements()
                 AttendanceRateView()
@@ -29,6 +30,6 @@ struct StudentDashboardView: View {
     }
 }
 
-#Preview {
-    StudentDashboardView()
-}
+//#Preview {
+//    StudentDashboardView()
+//}

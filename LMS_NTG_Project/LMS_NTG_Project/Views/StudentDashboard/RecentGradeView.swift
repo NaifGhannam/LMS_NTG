@@ -52,10 +52,10 @@ struct RecentGradeView: View {
     }
 }
 
-#Preview {
-    RecentGradeView()
-        .padding(.horizontal, 50)
-}
+//#Preview {
+//    RecentGradeView()
+//        .padding(.horizontal, 50)
+//}
 
 struct Grade: Identifiable {
     

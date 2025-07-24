@@ -24,7 +24,7 @@ struct Progress: View {
                     Text("Progress \(Int(progress * 100))%")
                         .font(.system(size: 22, weight: .bold))
                         .foregroundStyle(Color("PrimaryRed"))
-                        .padding(.top ,)
+                        .padding(.top)
                     
                     ProgressView(value: progress)
                         .progressViewStyle(LinearProgressViewStyle(tint: Color("PrimaryRed")))
@@ -41,6 +41,6 @@ struct Progress: View {
 }
 
 
-#Preview {
-    StudentDashboardView()
-}
+//#Preview {
+//    StudentDashboardView()
+//}
