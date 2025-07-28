@@ -7,75 +7,62 @@
 
 import SwiftUI
 
-struct UserCard : View {
-    var isActive : Bool = true
-    var userType : UserType = .admin
-    var username : String = "jenny Wilson"
-    var email : String = "Jenny.wilson@gmail.com"
-    
+struct UserCard: View {
+    let user: UserModel
+
     var body: some View {
-            HStack{
-                VStack{
-                    VStack(alignment: .leading){
-                        Text("\(username)")
-                        Text("\(email)")
-                        
-                        HStack{
-                            Text("\(userType)")
-                                .foregroundColor(Color.black)
-                                .padding(6)
-                                .background(Color.gray.opacity(0.2))
-                                .cornerRadius(10)
-                            
-                            Text(isActive ? "Active" : "disabled")
-                                .foregroundColor(isActive ? Color.green : Color.black)
-                                .padding(6)
-                                .background(isActive ? Color.green.opacity(0.2) : Color.gray.opacity(0.2))
-                                .cornerRadius(10)
-                                .padding(.leading , 10)
-                        }
-                    }
-            }
-           Spacer()
-                HStack  (spacing:30){
-                    Button{
-                        print("edit")
-                    } label : {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(user.name)
+                        .font(.headline)
+                        .foregroundColor(.black)
+
+                    Text(user.email)
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                }
+
+                Spacer()
+
+                HStack(spacing: 16) {
+                    Button(action: {
+                        // Edit action
+                    }) {
                         Image(systemName: "pencil")
-                            .resizable()
-                            .frame(width: 20, height: 20)
-                            .foregroundColor(Color.black)
+                            .foregroundColor(.black)
                     }
-                    
-                    Button{
-                        print("remove")
-                    } label : {
-                        Image(systemName: "trash.fill")
-                        .resizable()
-                        .frame(width: 20, height: 20)
-                        .foregroundColor(Color.red)
+
+                    Button(action: {
+                        // Delete action
+                    }) {
+                        Image(systemName: "trash")
+                            .foregroundColor(.red)
                     }
                 }
-                .padding()
-
-               
-                
             }
-            .frame(maxWidth: .infinity , alignment: .leading)
-            .padding()
-            .background(Color.white)
-            .overlay(
-                RoundedRectangle(cornerRadius: 20)
-                    .stroke(Color.black.opacity(0.15), lineWidth: 1)
-            )
-            .cornerRadius(20)
-           
-        // Using overlay + RoundedRectangle instead of .border()
-        // .border() does NOT respect cornerRadius and draws a full rectangle
-        // RoundedRectangle with .stroke() matches the corner radius perfectly
-            
-            
-                
-        
+
+            HStack(spacing: 10) {
+                Text(user.role)
+                    .font(.caption)
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 6)
+                    .background(Color.gray.opacity(0.2))
+                    .cornerRadius(10)
+
+                Text(user.status)
+                    .font(.caption)
+                    .foregroundColor(.green)
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 6)
+                    .background(Color.green.opacity(0.2))
+                    .cornerRadius(10)
+            }
+        }
+        .padding()
+        .background(Color.white)
+        .cornerRadius(20)
+        .padding(.horizontal)
+        .padding(.vertical, 4)
     }
 }
