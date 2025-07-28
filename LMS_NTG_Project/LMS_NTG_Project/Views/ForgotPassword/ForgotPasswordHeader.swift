@@ -24,7 +24,7 @@ struct ForgotPasswordHeader: View {
                     VStack(alignment: .leading) {
                     
                         Button(action: {action?()}) {
-                            Image("right-chevron")
+                            Image("white_right_chevron")
                                 .resizable()
                                 .frame(width: 30, height: 30)
                         }
