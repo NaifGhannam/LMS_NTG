@@ -18,18 +18,23 @@ struct ExamSchedulingView: View {
     @State private var examType = ["midterm", "final"]
     @State private var selectedExamType = "midterm"
     var body: some View {
-        Text("Exam Scheduling")
-                       .padding(.top ,20)
-                       .font(.system(size: 30))
-                       .font(.title2)
-                       .fontWeight(.bold)
-                       .frame(maxWidth: .infinity)
-                       .background(Color("PrimaryRed"))
-                       .foregroundColor(.white)
+        
+ 
                        
         VStack(alignment : .leading , spacing: 10){
             
-          
+            ZStack {
+                      Color("PrimaryRed")
+                          .clipShape(RoundedCornerShape(corners: [.bottomRight], radius: 50))
+
+                      Text("Exam Scheduling")
+                          .font(.system(size: 26, weight: .bold))
+                          .foregroundColor(.white)
+                       
+                  }
+                  .ignoresSafeArea()
+                  .padding(.trailing,10)
+           
 
             //Grade-Subject
             Section(header: Text("Grade–Subject")) {
@@ -132,11 +137,25 @@ struct ExamSchedulingView: View {
             Spacer()
         }
         .padding(.horizontal)
-        .background(Color("PrimaryBeige"))
+        .background(Color("PrimaryLightGray"))
             
     }
 }
 
+
+struct RoundedCornerShape: Shape {
+    var corners: UIRectCorner
+    var radius: CGFloat
+
+    func path(in rect: CGRect) -> Path {
+        let path = UIBezierPath(
+            roundedRect: rect,
+            byRoundingCorners: corners,
+            cornerRadii: CGSize(width: radius, height: radius)
+        )
+        return Path(path.cgPath)
+    }
+}
 #Preview {
     ExamSchedulingView()
 }
