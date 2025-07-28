@@ -29,7 +29,7 @@ struct ExamSchedulingView: View {
                        
         VStack(alignment : .leading , spacing: 10){
             
-           
+          
 
             //Grade-Subject
             Section(header: Text("Grade–Subject")) {
@@ -38,9 +38,9 @@ struct ExamSchedulingView: View {
                         Text($0)
                     }
                 }
-                .padding(.horizontal , 100)
                 .background(Color.white)
                 .cornerRadius(10)
+                
             }
             
             
@@ -79,8 +79,6 @@ struct ExamSchedulingView: View {
                     
                     DatePicker("Please enter a date", selection: $date, displayedComponents: .date).labelsHidden()
                     Spacer()
-                    Text("at")
-                    Spacer()
                     DatePicker("Please enter a time", selection: $time, displayedComponents: .hourAndMinute).labelsHidden()
                 }.padding(.horizontal , 30)
             }
@@ -92,7 +90,7 @@ struct ExamSchedulingView: View {
                         
                     }
                    
-                } .padding(.horizontal , 130)
+                }
                     .background(Color.white)
                     .cornerRadius(10)
 
@@ -134,7 +132,7 @@ struct ExamSchedulingView: View {
             Spacer()
         }
         .padding(.horizontal)
-        .background(Color.pink.opacity(0.1))
+        .background(Color("PrimaryBeige"))
             
     }
 }
