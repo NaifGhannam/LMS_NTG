@@ -8,47 +8,36 @@
 import SwiftUI
 
 struct UserManagementHeader: View {
-    
     @Binding var searchText: String
-    
+
     var body: some View {
-        VStack {
+        VStack(spacing: 16) {
+            Text("User Management")
+                .font(.system(size: 28, weight: .semibold))
+                .foregroundColor(.white)
 
-            Rectangle()
-                .fill(Color("PrimaryRed"))
-                .frame(height: UIScreen.main.bounds.size.height * 0.24)
-                .ignoresSafeArea(edges: .top)
-                .overlay {
+            // Code Review: Use Search Component
+            HStack(spacing: 12) {
+                Image(systemName: "magnifyingglass")
+                    .resizable()
+                    .frame(width: 20, height: 20)
+                    .foregroundColor(.gray)
+                    .padding(.leading)
 
-                    VStack {
-
-                        Text("User Management")
-                            .font(.largeTitle)
-                            .foregroundColor(.white)
-                            .bold()
-
-                        HStack(spacing: 12) {
-                            
-                            Image(systemName: "magnifyingglass")
-                                .resizable()
-                                .frame(width: 22, height: 22)
-                                .padding(.leading)
-                            
-                            TextField("Search by name or email", text: $searchText)
-                                .font(.system(size: 18))
-                                .frame(height: 55)
-                        }
-                        .background(.white)
-                        .cornerRadius(12)
-                        .padding(.horizontal, 8)
-                    }
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .padding(.top, 20)
-                }
-                .ignoresSafeArea()
+                TextField("Search by name or email", text: $searchText)
+                    .font(.system(size: 18))
+                    .frame(height: 50)
+            }
+            .background(Color(.systemGray6))
+            .clipShape(Capsule())
+            .padding(.horizontal)
         }
+        .padding(.bottom)
+        .frame(maxWidth: .infinity)
+        .background(Color("PrimaryRed"))
     }
 }
+
 
 #Preview {
     UserManagementHeader(searchText: .constant(""))
