@@ -8,16 +8,19 @@
 import SwiftUI
 
 struct UserMangementView: View {
+    let users = Array(repeating: UserModel(name: "jenny Wilson", email: "Jenny.wilson@gmail.com", role: "admin", status: "Active"), count: 10)
+    @State private var searchText = ""
+
     var body: some View {
-       
-        VStack{
-            UserManagementHeader(searchText: .constant(""))
-            List(1 ... 10 , id: \.self ){
-                _ in
-                UserCard()
-            }.listStyle(PlainListStyle())
-        }
-       
+            VStack(spacing: 0) {
+                UserManagementHeader(searchText: $searchText)
+                List(users) { user in
+                    UserCard(user: user)
+                        .listRowSeparator(.hidden)
+                        .listRowInsets(EdgeInsets())
+                }
+                .listStyle(.plain)
+            }.navigationBarHidden(true)
     }
 }
 
