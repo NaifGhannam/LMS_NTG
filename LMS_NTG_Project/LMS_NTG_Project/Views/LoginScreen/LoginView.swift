@@ -121,7 +121,9 @@ struct loginBox: View {
             .padding(.top, 10)
             
             // Login Button
-            NavigationLink(destination: Admin_dashoard()) {
+//            UserMangementView
+//            Admin_dashoard
+            NavigationLink(destination: UserMangementView()) {
                 Text("Login")
                     .fontWeight(.bold)
                     .foregroundColor(.white)
@@ -166,6 +168,6 @@ struct CustomCheckbox: View {
 
 
 
-//#Preview {
-//    LoginView()
-//}
+#Preview {
+    LoginView()
+}
