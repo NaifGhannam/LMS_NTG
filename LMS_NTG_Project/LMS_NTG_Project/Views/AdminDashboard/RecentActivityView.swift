@@ -11,7 +11,7 @@ struct RecentActivityView: View {
     var body: some View {
     
         ScrollView {
-            VStack(alignment: .leading, spacing: 8) {
+            VStack(alignment: .leading) {
                 
                 Text("Recent Activity Log")
                     .font(.title)
@@ -36,7 +36,7 @@ struct RecentActivityView: View {
                 
                 VStack {
                     
-                    ForEach(1...4, id: \.self) { _ in
+                    ForEach(1...8, id: \.self) { _ in
                         HStack {
                             Text("4:00AM")
                             Spacer()
@@ -53,7 +53,6 @@ struct RecentActivityView: View {
                 .background(Color.white)
                 .cornerRadius(20)
             }
-            .padding(.horizontal, 15)
         }
     }
 }

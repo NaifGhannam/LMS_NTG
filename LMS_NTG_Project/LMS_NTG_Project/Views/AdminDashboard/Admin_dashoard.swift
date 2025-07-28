@@ -16,12 +16,12 @@ struct Admin_dashoard: View {
                 .ignoresSafeArea()
             
             ScrollView {
-                VStack{
+                VStack(alignment: .leading) {
                     Text("Admin Dashoard")
                         .font(.title)
                         .foregroundColor(Color("PrimaryRed"))
-                        .padding(.trailing, 150)
                         .bold()
+                        .padding(.leading, 16)
                         
                     
                     Button{
@@ -29,36 +29,38 @@ struct Admin_dashoard: View {
                     } label: {
                         HStack{
                             Text("Filter Date Range")
-                                .font(.system(size: 25 , weight: .medium))
-                                .font(.headline)
+                                .font(.system(size: 22))
                                 .foregroundColor(.gray)
-                                .padding(.trailing ,70)
-                            
-                            
+                                .padding(.leading,20)
+                            Spacer()
                             
                             Image(systemName: "chevron.right")
                                 .foregroundColor(Color("PrimaryRed"))
                                 .font(.system(size:25))
-                            
+                                .padding(.trailing,8)
                         }
-                        .frame(width: 370, height: 70)
+                        .frame(maxWidth: .infinity)
+                        .padding(.horizontal, 10)
+                        .frame(height: 50)
                         .background(Color.white)
-                        .cornerRadius(10)
+                        .cornerRadius(16)
                         
-                        
-                    }
+                    }.padding(.bottom, 4)
+
+
                     
-                    HStack {
+                    HStack (spacing: 12) {
                         UserCountCard()
                         DailyAtndnceCard()
                     }
+                    
                     UpComingExamsCard()
                     
                     Spacer()
                         .frame(height: 30)
                     
                     RecentActivityView()
-                }
+                }.padding(.horizontal,16)
             }
         }
         .navigationBarHidden(true)
@@ -69,82 +71,83 @@ struct Admin_dashoard: View {
 struct UserCountCard : View {
     var userCount : Int = 1250
     var body: some View {
-        VStack{
-            
-            Text("user count")
-                .font(.title2)
-                .foregroundColor(.gray)
-                .alignmentGuide(.top) { $0[.bottom] }
-            
-            HStack{
-                Text("\(userCount)")
-                    .font(.system(size: 30, weight: .bold, design: .default))
-                    .padding()
-                    .foregroundColor(Color("PrimaryRed"))
-                    .alignmentGuide(.top) { $0[.bottom] }
-                    
+            let totalWidth = UIScreen.main.bounds.width
+            let spacing = 20.0
+            let padding = 14.0 * 2
+            let cardWidth = (totalWidth - (spacing + padding) ) / 2
+            VStack(alignment: .leading, spacing: 8){
                 
-                Image(systemName: "person.fill.badge.plus")
-                    .resizable()
-                    .foregroundColor(Color("PrimaryRed"))
-                    .frame(width: 30, height: 30)
+                Text("user count")
+                    .font(.system(size: 28))
+                    .foregroundColor(.gray)
+                Spacer()
+                HStack{
+                    Text("\(userCount)")
+                        .font(.system(size: 34))
+                        .foregroundColor(Color("PrimaryRed"))
+                        .padding(.trailing,16)
                     
-                    
+                    Spacer()
+                    Image(systemName: "person.fill.badge.plus")
+                        .resizable()
+                        .foregroundColor(Color("PrimaryRed"))
+                        .frame(width: 30, height: 30)
+                }
             }
-            
-        }
-        .frame(width: 180, height: 150)
-        .background(Color.white)
-            .cornerRadius(20)
+            .padding()
+            .frame(width: cardWidth, height: 140)
+            .background(Color.white)
+            .cornerRadius(16)
+            .shadow(color: .gray.opacity(0.1), radius: 3, x: 0, y: 1)
     }
 }
 
 struct DailyAtndnceCard : View {
     
     var dailyAtndnce : Int = 87
+   
+    
     var body: some View {
+        let totalWidth = UIScreen.main.bounds.width
+        let spacing = 20.0
+        let padding = 14.0 * 2
+        let cardWidth = (totalWidth - (spacing + padding) ) / 2
+        
         VStack{
-            HStack{
-                
+            HStack(alignment: .top){
                 VStack(alignment: .leading){
                     Text("Daily ")
                         .font(.title2)
                         .foregroundColor(.gray)
-                        .alignmentGuide(.top) { $0[.bottom] }
-                    Text("Atndnce")
+                    Text("Attandance")
                         .font(.title2)
                         .foregroundColor(.gray)
-                        .alignmentGuide(.top) { $0[.bottom] }
-                    
                 }.padding(.leading)
                
-                
+                Spacer()
                 Image(systemName: "gear")
                     .resizable()
                     .foregroundColor(Color("PrimaryRed"))
-                    .frame(width: 30, height: 30)
-                    .padding(.trailing)
+                    .frame(width: 25, height: 25)
             }
+
+
             HStack{
                 Text("\(dailyAtndnce)")
-                    .font(.system(size: 30, weight: .bold, design: .default))
-                    .padding()
+                    .font(.system(size: 34))
                     .foregroundColor(Color("PrimaryRed"))
-                    .alignmentGuide(.top) { $0[.bottom] }
-                    
-                
                 Image(systemName: "percent")
                     .resizable()
                     .foregroundColor(Color("PrimaryRed"))
                     .frame(width: 30, height: 30)
-                    
-                    
             }
             
         }
-        .frame(width: 180, height: 150)
+        .padding(.trailing, 8)
+        .frame(width: cardWidth, height: 140)
         .background(Color.white)
-            .cornerRadius(20)
+        .cornerRadius(16)
+        .shadow(color: .gray.opacity(0.1), radius: 3, x: 0, y: 1)
     }
 }
 
@@ -152,40 +155,34 @@ struct DailyAtndnceCard : View {
 struct UpComingExamsCard : View {
     var count: Int = 6
     var body: some View {
-        VStack{
+        VStack(alignment: .leading, spacing: 16){
             HStack{
                 
-                    Text("Upcoming Exams")
-                        .font(.title2)
-                        .foregroundColor(.gray)
-                        .alignmentGuide(.top) { $0[.bottom] }
-                        .padding(.trailing , 140)
-                        .padding(.top , 10)
+                Text("Upcoming Exams")
+                .font(.system(size: 20))
+                .foregroundColor(.gray)
                   
+                Spacer()
                 Image(systemName: "gear")
                     .resizable()
                     .foregroundColor(Color("PrimaryRed"))
-                    .frame(width: 30, height: 30)
-                    .padding(.top , 20)
+                    .frame(width: 25, height: 25)
             }
       
-                Text("\(count)")
-                    .font(.system(size: 30, weight: .bold, design: .default))
-                    .foregroundColor(Color("PrimaryRed"))
-                    .alignmentGuide(.leading) { $0[.bottom]}
-                    .padding(.trailing , 300)
-                    
-
-            
+            Text("\(count)")
+                .font(.system(size: 40, weight: .bold))
+            .foregroundColor(Color("PrimaryRed"))
         }
-        .frame(width: 370, height: 110)
+        .frame(maxWidth: .infinity)
+        .padding(.horizontal, 10)
+        .frame(height: 110)
         .background(Color.white)
             .cornerRadius(20)
             
            
     }
 }
-    #Preview {
-        Admin_dashoard()
-    }
+//    #Preview {
+//        Admin_dashoard()
+//    }
 
