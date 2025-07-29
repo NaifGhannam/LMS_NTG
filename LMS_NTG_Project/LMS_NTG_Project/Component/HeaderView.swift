@@ -11,9 +11,11 @@ struct HeaderView: View {
     
     @State var showFirstIcon: Bool = false
     @State var firstIcon: String = "white_right_chevron"
-
+    @State var fAction: (() -> ())?
+    
     @State var showSecondIcon: Bool = false
     @State var secondIcon: String = "white_upload"
+    @State var sAction: (() -> ())?
     
     @State var title: String = "Title"
     
@@ -23,9 +25,12 @@ struct HeaderView: View {
                 
                 if showFirstIcon {
                     
-                    Image(firstIcon)
-                        .resizable()
-                        .frame(width: 30, height: 30)
+                    Button(action: {fAction?()}) {
+                        Image(firstIcon)
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                    }
+                    
                 } else {
                     
                     Spacer()
@@ -42,9 +47,12 @@ struct HeaderView: View {
                 
                 if showSecondIcon {
                     
-                    Image(secondIcon)
-                        .resizable()
-                        .frame(width: 29, height: 29)
+                    Button(action: {sAction?()}) {
+                        Image(secondIcon)
+                            .resizable()
+                            .frame(width: 29, height: 29)
+                    }
+                    
                 } else {
                     
                     Spacer()
