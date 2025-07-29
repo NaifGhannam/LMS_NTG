@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct LoginView: View {
+    @StateObject private var viewModel = Login_ViewModel()
     
     var body: some View {
-        
-        ZStack{
+        ZStack {
             Color("PrimaryRed").edgesIgnoringSafeArea(.all)
             VStack {
                 Rectangle()
@@ -24,16 +24,17 @@ struct LoginView: View {
                     .ignoresSafeArea(.all)
                 Spacer()
             }
-            VStack{
+
+            VStack {
                 Image("NTG_LMS_LOGO")
                     .resizable()
                     .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.3)
-                loginBox()
+                
+                loginBox(viewModel: viewModel)
+                
                 Spacer()
             }
         }
-        
-        
     }
 }
 
@@ -42,28 +43,30 @@ struct LoginView: View {
 
 
 struct loginBox: View {
-    
-    @State private var email: String = ""
-    @State private var password : String = ""
-    @State private var rememberMe : Bool = false
-    @State private var showPassword: Bool = false
-    
+    @StateObject var viewModel: Login_ViewModel
+    @State private var rememberMe = false
+    @State private var showPassword = false
+
     var body: some View {
-        VStack() {
+        VStack {
             // Email Field
             HStack {
                 Image(systemName: "person.fill")
                     .foregroundColor(Color("PrimaryRed"))
                 
-                TextField("Email", text: $email)
+                TextField("Email", text: $viewModel.email)
+                    .onChange(of: viewModel.email) { _ in
+                        viewModel.errorMessage = nil}
+                    .keyboardType(.emailAddress)
+                    .autocapitalization(.none)
                     .foregroundColor(.gray)
             }
             .padding()
-            .background(Color(red: 0.95, green: 0.92, blue: 0.92)) // light gray
+            .background(Color(red: 0.95, green: 0.92, blue: 0.92))
             .cornerRadius(25)
             .padding(.horizontal)
             .padding(.top, 30)
-            
+
             // Password Field
             HStack {
                 Image(systemName: "lock.fill")
@@ -71,13 +74,19 @@ struct loginBox: View {
                 
                 Group {
                     if showPassword {
-                        TextField("Password", text: $password)
+                        TextField("Password", text: $viewModel.password)
+                            .onChange(of: viewModel.password) { _ in
+                                   viewModel.errorMessage = nil
+                               }
                     } else {
-                        SecureField("Password", text: $password)
+                        SecureField("Password", text: $viewModel.password)
+                            .onChange(of: viewModel.password) { _ in
+                                   viewModel.errorMessage = nil
+                               }
                     }
                 }
                 .foregroundColor(.gray)
-                
+
                 Button(action: {
                     showPassword.toggle()
                 }) {
@@ -91,10 +100,8 @@ struct loginBox: View {
             .padding(.horizontal)
             .padding(.top, 30)
             .padding(.bottom, 10)
+
             // Remember Me & Forgot Password
-            
-            
-            
             HStack {
                 HStack(spacing: 5) {
                     Button(action: {
@@ -107,23 +114,24 @@ struct loginBox: View {
                         .foregroundColor(Color("PrimaryRed"))
                         .font(.footnote)
                 }
-                
+
                 Spacer()
-                
-                NavigationLink (destination: ForgotPasswordView()) {
+
+                NavigationLink(destination: ForgotPasswordView()) {
                     Text("Forgot Password?")
                         .foregroundColor(Color("PrimaryRed"))
                         .font(.footnote)
                 }
-                
             }
             .padding(.horizontal, 30)
             .padding(.top, 10)
-            
+
             // Login Button
-//            UserMangementView
-//            Admin_dashoard
-            NavigationLink(destination: UserMangementView()) {
+            Button(action: {
+                Task {
+                    await viewModel.login()
+                }
+            }) {
                 Text("Login")
                     .fontWeight(.bold)
                     .foregroundColor(.white)
@@ -132,7 +140,26 @@ struct loginBox: View {
                     .cornerRadius(25)
             }
             .padding(.horizontal)
-            .padding(.bottom, 26)
+            .padding(.bottom, 10)
+
+
+            // Error Message
+            if let error = viewModel.errorMessage {
+                Text(error)
+                    .foregroundColor(.red)
+                    .font(.footnote)
+                    .padding(.bottom, 10)
+            }
+
+            // Success Navigation
+            if viewModel.isLoggedIn {
+                NavigationLink(
+                    destination: UserMangementView(),
+                    isActive: $viewModel.isLoggedIn
+                ) {
+                    EmptyView()
+                }
+            }
         }
         .padding(.vertical)
         .background(Color.white)
@@ -140,32 +167,9 @@ struct loginBox: View {
         .shadow(color: .gray.opacity(0.2), radius: 10, x: 0, y: 4)
         .frame(maxWidth: .infinity)
         .padding(.horizontal, 10)
-        
     }
 }
-
-
-
-
-struct CustomCheckbox: View {
-    @Binding var isChecked: Bool
-    var label: String
-    
-    var body: some View {
-        HStack {
-            Button(action: {
-                isChecked.toggle()
-            }) {
-                Image(systemName: isChecked ? "checkmark.square.fill" : "square")
-                    .foregroundColor(isChecked ? .blue : .gray)
-                    .font(.system(size: 24))
-            }
-            Text(label)
-                .font(.subheadline)
-        }
-    }
-}
-
+      
 
 
 #Preview {
