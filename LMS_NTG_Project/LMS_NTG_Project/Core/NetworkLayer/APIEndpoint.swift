@@ -10,6 +10,7 @@ import Foundation
 enum APIEndpoint {
     case login
 //    case updateProfile(id: Int)
+    case requestReset
 
     var baseURL: String {
         return "https://lmsendpoints-production.up.railway.app/"
@@ -22,6 +23,9 @@ enum APIEndpoint {
         
 //        case .updateProfile(let id):
 //            return "/users/\(id)"
+            
+        case .requestReset:
+            return "api/v1/accounts/request-reset"
         
         }
     }
@@ -30,7 +34,9 @@ enum APIEndpoint {
         switch self {
         case .login: return .post
 //        case .updateProfile: return .put
-        
+            
+        case .requestReset:
+            return .post
         }
     }
 

@@ -25,7 +25,7 @@ struct CustomTextField: View {
                 
                 Image(iconName)
                 
-                TextField(placeholder, text: .constant(""))
+                TextField(placeholder, text: $text)
                 
             }
             .padding()

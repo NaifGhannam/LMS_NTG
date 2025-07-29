@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ForgetPasswordView: View {
+    
+    @StateObject private var viewModel = ForgetPasswordViewModel()
+    
     var body: some View {
         
         NavigationStack {
@@ -27,10 +30,19 @@ struct ForgetPasswordView: View {
                     .multilineTextAlignment(.center)
                     .foregroundColor(.black.opacity(0.55))
                 
-                CustomTextField(labelText: "Email", iconName: "mdi_email", placeholder: "Enter your email", text: .constant(""))
+                CustomTextField(labelText: "Email", iconName: "mdi_email", placeholder: "Enter your email", text: $viewModel.email)
                     .padding(.bottom, 10)
                 
-                CustomButton(title: "Recover Password")
+                CustomButton(title: "Recover Password") {
+                    Task { await viewModel.forgetPassword() }
+                }
+                
+                Spacer()
+                
+                if let error = viewModel.errorMessage {
+                    Text(error).foregroundColor(.red)
+                        .font(.title)
+                }
                 
                 Spacer()
             }
