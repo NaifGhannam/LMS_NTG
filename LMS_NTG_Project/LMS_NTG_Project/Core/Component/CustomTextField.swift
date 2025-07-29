@@ -29,7 +29,7 @@ struct CustomTextField: View {
                 
             }
             .padding()
-            .overlay{
+            .overlay {
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(Color.black.opacity(0.17), lineWidth: 1)
             }
