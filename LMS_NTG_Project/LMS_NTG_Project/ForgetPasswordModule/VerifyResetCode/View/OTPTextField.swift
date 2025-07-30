@@ -11,12 +11,15 @@ struct OTPTextField: View {
     
     let numberOfFields: Int
     
-    @State var enteredOTP: [String]
+    @State var otpDigits: [String]
+    @Binding var enteredOTP: String
+    
     @FocusState private var fieldFocus: Int?
     
-    init(numberOfFields: Int) {
+    init(numberOfFields: Int, enteredOTP: Binding<String>) {
         self.numberOfFields = numberOfFields
-        self.enteredOTP = Array(repeating: "", count: numberOfFields)
+        self._enteredOTP = enteredOTP
+        self.otpDigits = Array(repeating: "", count: numberOfFields)
     }
     
     var body: some View {
@@ -24,7 +27,7 @@ struct OTPTextField: View {
             
             ForEach(0..<numberOfFields, id: \.self) { index in
                 
-                TextField("", text: $enteredOTP[index])
+                TextField("", text: $otpDigits[index])
                     .frame(width: 40, height: 40)
                     .overlay {
                         RoundedRectangle(cornerRadius: 10)
@@ -33,15 +36,17 @@ struct OTPTextField: View {
                     .multilineTextAlignment(.center)
                     .focused($fieldFocus, equals: index)
                     .tag(index)
-                    .onChange(of: enteredOTP[index]) { newValue, _ in
+                    .onChange(of: otpDigits[index]) { newValue, _ in
                         fieldFocus = (fieldFocus ?? 0) + 1
+                        updateEnteredOTP()
                     }
             }
             .padding(.horizontal, 3)
         }
     }
+    
+    private func updateEnteredOTP() {
+        enteredOTP = otpDigits.joined()
+    }
 }
 
-#Preview {
-    OTPTextField(numberOfFields: 4)
-}
