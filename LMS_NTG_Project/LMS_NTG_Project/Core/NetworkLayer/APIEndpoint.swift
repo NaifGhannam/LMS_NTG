@@ -11,7 +11,8 @@ enum APIEndpoint {
     case login
 //    case updateProfile(id: Int)
     case requestReset
-
+    case verifyResetCode
+    
     var baseURL: String {
         return "https://lmsendpoints-production.up.railway.app/"
     }
@@ -26,6 +27,9 @@ enum APIEndpoint {
             
         case .requestReset:
             return "api/v1/accounts/request-reset"
+            
+        case .verifyResetCode:
+            return "api/v1/accounts/verify-reset-code"
         
         }
     }
@@ -36,6 +40,9 @@ enum APIEndpoint {
 //        case .updateProfile: return .put
             
         case .requestReset:
+            return .post
+            
+        case .verifyResetCode:
             return .post
         }
     }

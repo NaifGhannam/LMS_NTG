@@ -1,5 +1,5 @@
 //
-//  ResetPasswordView.swift
+//  VerifyResetCodeView.swift
 //  LMS_NTG_Project
 //
 //  Created by Tahani on 04/02/1447 AH.
@@ -7,7 +7,10 @@
 
 import SwiftUI
 
-struct ResetPasswordView: View {
+struct VerifyResetCodeView: View {
+    
+    @StateObject private var viewModel = VerifyResetCodeViewModel()
+    
     var body: some View {
         
         NavigationStack {
@@ -27,7 +30,7 @@ struct ResetPasswordView: View {
                     .multilineTextAlignment(.center)
                     .foregroundColor(.black.opacity(0.55))
                 
-                OTPTextField(numberOfFields: 4)
+                OTPTextField(numberOfFields: 4, enteredOTP: $viewModel.code)
                     .padding(.top, 20)
                 
                 HStack {
@@ -50,7 +53,7 @@ struct ResetPasswordView: View {
 }
 
 #Preview {
-    ResetPasswordView()
+    VerifyResetCodeView()
 }
 
 
