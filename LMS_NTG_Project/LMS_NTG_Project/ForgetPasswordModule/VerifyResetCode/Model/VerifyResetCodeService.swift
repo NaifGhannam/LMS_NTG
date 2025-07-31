@@ -13,7 +13,7 @@ struct VerifyResetCodeService: VerifyResetCodeServiceProtocol {
         
         let request = VerifyResetCodeRequest(code: code)
         
-        return try await NetworkManager.shared.request( endpoint: .verifyResetCode, body: request)
+        return try await NetworkManager.shared.request(endpoint: .verifyResetCode, body: request)
         
     }
 }
