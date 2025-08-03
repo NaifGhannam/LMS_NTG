@@ -11,13 +11,14 @@ import Foundation
 class MyGradesViewModel: ObservableObject {
     
     @Published var selectedSubject: SubjectGrade? = nil
+    @Published var selectedGrade: SubjectGrade? = nil
     @Published var degree: Int?
     @Published var isLoading = false
     @Published var errorMessage: String?
     
     @Published var subjectGrades: [SubjectGrade] = [
         SubjectGrade(name: "Math", icon: "math", grade: "B+"),
-        SubjectGrade(name: "Physics", icon: "ph", grade: "A+"),
+        SubjectGrade(name: "Physics", icon: "ph", grade: "B"),
         SubjectGrade(name: "English", icon: "en", grade: "A+"),
         SubjectGrade(name: "Arabic", icon: "ar", grade: "C+"),
         SubjectGrade(name: "IT", icon: "it", grade: "A")
@@ -46,11 +47,11 @@ class MyGradesViewModel: ObservableObject {
         isLoading = false
     }
     
-    func displaySubject() -> [SubjectGrade] {
-        if let selected = selectedSubject {
-            return subjectGrades.filter { $0 == selected }
-        } else {
-            return subjectGrades
+    func displayFilteredSubjects() -> [SubjectGrade] {
+        subjectGrades.filter { subject in
+            let matchesSubject = selectedSubject == nil || subject == selectedSubject
+            let matchesGrade = selectedGrade == nil || subject == selectedGrade
+            return matchesSubject && matchesGrade
         }
     }
 }
