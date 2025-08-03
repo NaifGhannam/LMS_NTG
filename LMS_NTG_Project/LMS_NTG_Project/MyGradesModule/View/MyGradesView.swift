@@ -24,15 +24,28 @@ struct MyGradesView: View {
                 Spacer()
                     .frame(height: UIScreen.main.bounds.size.height * 0.05)
                 
-                PickerButton(title: "Subject") {
-                    isSubject.toggle()
-                }
-                .sheet(isPresented: $isSubject) {
-                    SubjectSheet(subjectGrades: viewModel.subjectGrades, viewModel: viewModel)
-                        .padding(.horizontal, 20)
+                HStack {
+                    
+                    PickerButton(title: "Subject") {
+                        isSubject.toggle()
+                    }
+                    .sheet(isPresented: $isSubject) {
+                        SubjectSheet(subjectGrades: viewModel.subjectGrades, viewModel: viewModel)
+                            .padding(.horizontal, 20)
+                    }
+                    
+                    Spacer()
+                    
+                    PickerButton(title: "Grade") {
+                        isGrade.toggle()
+                    }
+                    .sheet(isPresented: $isGrade) {
+                        SubjectSheet(subjectGrades: viewModel.subjectGrades, viewModel: viewModel, isGradeSelected: true)
+                            .padding(.horizontal, 20)
+                    }
                 }
                 
-                ForEach(viewModel.displaySubject(), id: \.id) { subject in
+                ForEach(viewModel.displayFilteredSubjects(), id: \.id) { subject in
                     
                     HStack(spacing: 22) {
                         
