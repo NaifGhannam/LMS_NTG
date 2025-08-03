@@ -10,13 +10,9 @@ import Foundation
 struct DegreesService: DegreesServiceProtocol {
     
     func getDegrees(id: Int) async throws -> DegreesResponse {
-        let request = DegreesRequest(
-            id: id
-        )
         
         return try await NetworkManager.shared.request(
-            endpoint: .getDegrees(id: id),
-            body: request
+            endpoint: .getDegrees(id: id)
         )
     }
 }
