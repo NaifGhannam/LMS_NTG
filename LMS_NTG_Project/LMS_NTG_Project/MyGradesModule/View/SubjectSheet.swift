@@ -21,6 +21,7 @@ struct SubjectSheet: View {
             HStack {
                 Button(action: {
                     viewModel.selectedSubject = nil
+                    viewModel.selectedGrade = nil
                     dismiss()
                 }) {
                     Text("Cancel")
