@@ -16,12 +16,12 @@ struct AttendanceRateView: View {
             RoundedRectangle(cornerRadius: 25)
                 .foregroundColor(Color("DarkPink"))
             
-            HStack {
+            VStack {
                 
                 Text("Attendance Rate")
                     .font(.system(size: 19, weight: .semibold))
                     .foregroundColor(Color("PrimaryRed"))
-                    .frame(maxHeight: .infinity, alignment: .topLeading)
+                    .frame(maxWidth: .infinity, alignment: .topLeading)
                     .padding(.leading, 4)
                 
                 Spacer()

@@ -14,6 +14,8 @@ enum APIEndpoint {
     case verifyResetCode
     case resetPassword
     case getDegrees(id: Int)
+    case studentInfo(id: Int)
+    
     
     var baseURL: String {
         return "https://lmsendpoints-production.up.railway.app/"
@@ -38,7 +40,8 @@ enum APIEndpoint {
             
         case .getDegrees(let id):
             return "api/v1/degrees/student/\(id)"
-        
+        case .studentInfo(let id):
+            return ""
         }
     }
 
@@ -57,6 +60,9 @@ enum APIEndpoint {
             return .post
             
         case .getDegrees:
+            return .get
+        
+        case .studentInfo:
             return .get
         }
     }

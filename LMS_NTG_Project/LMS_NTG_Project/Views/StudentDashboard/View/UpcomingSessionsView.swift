@@ -9,13 +9,7 @@ import SwiftUI
 
 struct UpcomingSessionsView: View {
     
-    @State var upcomingSessions: [Session] = [
-        Session(title: "Java", date: "Apr 25", time: "1:00pm"),
-        Session(title: "Flutter", date: "July 25", time: "2:00pm"),
-        Session(title: "DB", date: "Oct 25", time: "3:00pm"),
-        Session(title: "Testing", date: "Apr 30", time: "7:00pm"),
-    ]
-    
+    @StateObject var ViewModel = StudentDashboardViewModel()
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 25)
@@ -29,7 +23,7 @@ struct UpcomingSessionsView: View {
                     .foregroundColor(Color("PrimaryRed"))
                     .padding(.bottom, 10)
                 
-                ForEach(upcomingSessions, id: \.id) { session in
+                ForEach(ViewModel.upcomingSessions, id: \.id) { session in
                     
                     HStack {
                         Text(session.title)
@@ -43,7 +37,7 @@ struct UpcomingSessionsView: View {
                     .padding(.horizontal, 25)
                     .frame(maxWidth: .infinity)
                             .padding(.vertical, 5)
-                    .background(RoundedRectangle(cornerRadius: 10)
+                    .background(RoundedRectangle(cornerRadius: 28)
                                 
                             .fill(Color("DarkPink")))
                             .padding(5)
@@ -58,16 +52,6 @@ struct UpcomingSessionsView: View {
 }
 
 #Preview {
-    UpcomingSessionsView()
+    UpcomingSessionsView(ViewModel: StudentDashboardViewModel())
         .padding(.horizontal, 50)
 }
-
-struct Session: Identifiable {
-    
-    let id: UUID = UUID()
-    let title: String
-    let date: String
-    let time: String
-}
-
-

@@ -8,13 +8,7 @@
 import SwiftUI
 
 struct RecentGradeView: View {
-    
-    @State var recentGrades: [Grade] = [
-        Grade(title: "Java", grade: "A+"),
-        Grade(title: "Flutter", grade: "A"),
-        Grade(title: "DB", grade: "C"),
-        Grade(title: "Testing", grade: "D"),
-    ]
+    @ObservedObject var ViewModel = StudentDashboardViewModel()
     
     var body: some View {
         ZStack {
@@ -29,7 +23,7 @@ struct RecentGradeView: View {
                     .foregroundColor(Color("PrimaryRed"))
                     .padding(.bottom, 10)
                 
-                ForEach(recentGrades, id: \.id) { grade in
+                ForEach(ViewModel.recentGrades, id: \.id) { grade in
                     
                     HStack {
                         Text(grade.title)
@@ -44,7 +38,7 @@ struct RecentGradeView: View {
                     .padding(.horizontal, 25)
                     .frame(maxWidth: .infinity)
                             .padding(.vertical, 5)
-                    .background(RoundedRectangle(cornerRadius: 10)
+                    .background(RoundedRectangle(cornerRadius: 28)
                                 
                             .fill(Color("DarkPink")))
                             .padding(5)                }
@@ -60,11 +54,4 @@ struct RecentGradeView: View {
 #Preview {
     RecentGradeView()
         .padding(.horizontal, 50)
-}
-
-struct Grade: Identifiable {
-    
-    let id: UUID = UUID()
-    let title: String
-    let grade: String
 }

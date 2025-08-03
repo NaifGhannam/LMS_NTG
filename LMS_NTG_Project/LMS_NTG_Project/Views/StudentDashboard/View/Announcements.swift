@@ -9,8 +9,9 @@ import SwiftUI
 
 struct Announcements: View {
     
-    @State private var Announcements : [String] = ["New assignment posted!" , "New lecture scheduled!" , "New exam scheduled!"]
-    
+   
+    @ObservedObject var ViewModel = StudentDashboardViewModel()
+
     var body: some View {
         VStack {
             
@@ -19,7 +20,7 @@ struct Announcements: View {
                 .foregroundColor(Color("PrimaryRed"))
                 .padding(14)
             
-        ForEach(Announcements, id: \.self) { Announcement in
+            ForEach(ViewModel.Announcements, id: \.self) { Announcement in
                 HStack {
                 
                     Image(systemName: "bell")
@@ -29,10 +30,10 @@ struct Announcements: View {
                         .foregroundColor(Color("DarkRed"))}
         }.frame(maxWidth: .infinity)
                 .padding(.vertical, 5)
-        .background(RoundedRectangle(cornerRadius: 10)
-                    
-                .fill(Color("DarkPink")))
-                .padding(5)
+        .background(RoundedRectangle(cornerRadius: 28)
+           .fill(Color("DarkPink")))
+        .padding(.horizontal , 20)
+               
             Spacer()
             
         }
@@ -40,6 +41,7 @@ struct Announcements: View {
         .background(Color("PrimaryPink"))
         .cornerRadius(25)
         .shadow(color: .black.opacity(0.3), radius: 5, y: 3)
+        
       
     }
 }

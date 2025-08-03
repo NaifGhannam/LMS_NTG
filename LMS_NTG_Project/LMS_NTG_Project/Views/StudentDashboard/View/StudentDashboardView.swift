@@ -25,8 +25,9 @@ struct StudentDashboardView: View {
                 
                 
                 
-                HStack{
+                HStack(spacing : 20){
                     RecentGradeView()
+                        
                     AttendanceRateView()
                 }
                
