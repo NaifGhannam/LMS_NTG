@@ -24,18 +24,18 @@ struct ExamSchedulingView: View {
         VStack(alignment : .leading , spacing: 10){
             
             ZStack {
-                      Color("PrimaryRed")
-                          .clipShape(RoundedCornerShape(corners: [.bottomRight], radius: 50))
-
-                      Text("Exam Scheduling")
-                          .font(.system(size: 26, weight: .bold))
-                          .foregroundColor(.white)
-                       
-                  }
-                  .ignoresSafeArea()
-                  .padding(.trailing,10)
-           
-
+                Color("PrimaryRed")
+                    .clipShape(RoundedCornerShape(corners: [.bottomRight], radius: 50))
+                
+                Text("Exam Scheduling")
+                    .font(.system(size: 26, weight: .bold))
+                    .foregroundColor(.white)
+                
+            }
+            .ignoresSafeArea()
+            .padding(.trailing,10)
+            
+            VStack{
             //Grade-Subject
             Section(header: Text("Grade–Subject")) {
                 Picker("Grade Subject", selection: $selectedGradeSubject) {
@@ -55,7 +55,7 @@ struct ExamSchedulingView: View {
             Section(header: Text("Duration")){
                 HStack{
                     TextField("e.g., 90", text: $duration)
-
+                    
                     Image(systemName: "applewatch")
                 }
                 .padding()
@@ -64,21 +64,21 @@ struct ExamSchedulingView: View {
             }
             
             Section(header: Text("Weightage")){
-            
-                    TextField("e.g., 30", text: $Weightage)
-                .padding()
-                .background(Color.white)
+                
+                TextField("e.g., 30", text: $Weightage)
+                    .padding()
+                    .background(Color.white)
                 .cornerRadius(10)            }
-
+            
             Section(header : Text("Room / Location")){
                 TextField("e.g. Room 204" ,text :$room )
                     .padding()
                     .background(Color.white)
                     .cornerRadius(10)
             }
-
             
-             // DATE AND TIME
+            
+            // DATE AND TIME
             Section(header : Text("Date & Time")){
                 HStack{
                     
@@ -87,21 +87,21 @@ struct ExamSchedulingView: View {
                     DatePicker("Please enter a time", selection: $time, displayedComponents: .hourAndMinute).labelsHidden()
                 }.padding(.horizontal , 30)
             }
-           
+            
             Section(header : Text("Exam Type (Midterm/Final)")){
                 Picker("Exam Type",selection: $selectedExamType){
                     ForEach(examType, id: \.self){
                         Text($0)
                         
                     }
-                   
+                    
                 }
-                    .background(Color.white)
-                    .cornerRadius(10)
-
+                .background(Color.white)
+                .cornerRadius(10)
+                
             }.padding(.bottom , 30)
             
-        HStack(){
+            HStack(){
                 Button(){
                     print("Save")
                 }label: {
@@ -113,7 +113,7 @@ struct ExamSchedulingView: View {
                         .frame(maxWidth: .infinity)
                         .background(Color.green)
                         .cornerRadius(50)
-
+                    
                 }
                 
                 Spacer(minLength: 20)
@@ -131,12 +131,14 @@ struct ExamSchedulingView: View {
                 }
                 
             }
-        .frame(maxWidth: .infinity)
+            .frame(maxWidth: .infinity)
             
             
             Spacer()
         }
-        .padding(.horizontal)
+            .padding(.horizontal ,20)
+        }
+        
         .background(Color("PrimaryLightGray"))
             
     }
