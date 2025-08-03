@@ -11,7 +11,6 @@ import Foundation
 class ForgetPasswordViewModel: ObservableObject {
     
     @Published var email = ""
-    
     @Published var message: String?
     @Published var isLoading = false
     @Published var errorMessage: String?
