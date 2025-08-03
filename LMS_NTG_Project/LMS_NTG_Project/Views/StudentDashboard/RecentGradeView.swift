@@ -42,7 +42,12 @@ struct RecentGradeView: View {
                     .foregroundColor(Color("DarkRed"))
                     .font(.system(size: 14))
                     .padding(.horizontal, 25)
-                }
+                    .frame(maxWidth: .infinity)
+                            .padding(.vertical, 5)
+                    .background(RoundedRectangle(cornerRadius: 10)
+                                
+                            .fill(Color("DarkPink")))
+                            .padding(5)                }
                 
                 Spacer()
             }
@@ -52,10 +57,10 @@ struct RecentGradeView: View {
     }
 }
 
-//#Preview {
-//    RecentGradeView()
-//        .padding(.horizontal, 50)
-//}
+#Preview {
+    RecentGradeView()
+        .padding(.horizontal, 50)
+}
 
 struct Grade: Identifiable {
     

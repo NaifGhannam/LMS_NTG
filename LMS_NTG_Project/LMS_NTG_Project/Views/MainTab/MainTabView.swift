@@ -11,7 +11,7 @@ struct MainTabView: View {
 //    1 -> ADMIN
 //    2 -> STUDENT
 //    3 -> TEACHER
-    var UserType: Int = 3
+    var UserType: Int = 2
     var body: some View {
         
         TabView {
@@ -43,7 +43,7 @@ struct MainTabView: View {
                     }
                 
             case 2:  // Student
-                Text("Dashboard")
+                StudentDashboardView()
                     .tabItem {
                         Image("Dashbord_icon")
                         Text("Dashboard")

@@ -41,6 +41,12 @@ struct UpcomingSessionsView: View {
                     .foregroundColor(Color("DarkRed"))
                     .font(.system(size: 14))
                     .padding(.horizontal, 25)
+                    .frame(maxWidth: .infinity)
+                            .padding(.vertical, 5)
+                    .background(RoundedRectangle(cornerRadius: 10)
+                                
+                            .fill(Color("DarkPink")))
+                            .padding(5)
                 }
                 
                 Spacer()
@@ -51,10 +57,10 @@ struct UpcomingSessionsView: View {
     }
 }
 
-//#Preview {
-//    UpcomingSessionsView()
-//        .padding(.horizontal, 50)
-//}
+#Preview {
+    UpcomingSessionsView()
+        .padding(.horizontal, 50)
+}
 
 struct Session: Identifiable {
     

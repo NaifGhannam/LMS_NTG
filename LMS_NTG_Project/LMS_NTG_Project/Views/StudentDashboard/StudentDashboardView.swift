@@ -18,18 +18,25 @@ struct StudentDashboardView: View {
               
                 UpcomingSessionsView()
                     .padding(.top,20)
-                Progress()
-                Announcements()
-                AttendanceRateView()
-                RecentGradeView()
+                
+                
+//                Progress()
+              Announcements()
+                
+                
+                
+                HStack{
+                    RecentGradeView()
+                    AttendanceRateView()
+                }
+               
             }
-            
-            .padding(.horizontal, 50)
+            .padding(.horizontal)
             
         }.ignoresSafeArea(.all, edges: .top)
     }
 }
 
-//#Preview {
-//    StudentDashboardView()
-//}
+#Preview {
+    StudentDashboardView()
+}
