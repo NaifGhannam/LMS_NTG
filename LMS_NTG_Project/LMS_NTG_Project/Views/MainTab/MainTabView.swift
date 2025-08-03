@@ -11,7 +11,7 @@ struct MainTabView: View {
 //    1 -> ADMIN
 //    2 -> STUDENT
 //    3 -> TEACHER
-    var UserType: Int = 2
+    var UserType: Int = 3
     var body: some View {
         
         TabView {
@@ -20,12 +20,12 @@ struct MainTabView: View {
              
                 Text("profile")
                     .tabItem {
-                        Image(systemName: "person.crop.circle")
+                        Image("Profile")
                         Text("profile")
                     }
                 Admin_dashoard()
                     .tabItem {
-                        Image(systemName: "rectangle.split.3x1")
+                        Image("Dashbord_icon")
                         Text("Dashboard")
                     }
                 SessionSchedulingView()
@@ -45,38 +45,41 @@ struct MainTabView: View {
             case 2:  // Student
                 Text("Dashboard")
                     .tabItem {
-                        Image(systemName: "rectangle.split.3x1")
+                        Image("Dashbord_icon")
                         Text("Dashboard")
                     }
                 Text("profile")
                     .tabItem {
-                        Image(systemName: "person.crop.circle")
+                        Image("Profile")
                         Text("profile")
+                    
+                    }
+               
+                Text("Attendance Record")
+                    .tabItem {
+                        Image("2person")
+                        Text("Attendance Record")
                     }
                 Text("My Grades")
                     .tabItem {
-                        Image(systemName: "rosette")
+                        Image("A+")
                         Text("My Grades")
-                    }
-                Text("Attendance Record")
-                    .tabItem {
-                        Image(systemName: "checkmark.square")
-                        Text("Attendance Record")
                     }
             case 3: // Techear
                 Text("profile")
                     .tabItem {
-                        Image(systemName: "person.crop.circle")
+                        Image("Profile")
                         Text("profile")
                     }
                 Text("Dashboard")
                     .tabItem {
-                        Image(systemName: "rectangle.split.3x1")
+                        Image("Dashbord_icon")
+
                         Text("Dashboard")
                     }
                 Text("Take Attendance")
                     .tabItem {
-                        Image(systemName: "checkmark.square")
+                        Image("2person")
                         Text("Take Attendance")
                     }
                 
