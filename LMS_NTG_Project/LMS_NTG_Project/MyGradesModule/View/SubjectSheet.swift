@@ -13,6 +13,7 @@ struct SubjectSheet: View {
 
     @State var subjectGrades: [SubjectGrade]
     @ObservedObject var viewModel: MyGradesViewModel
+    @State var isGradeSelected: Bool = false
     
     var body: some View {
         VStack {
@@ -20,6 +21,7 @@ struct SubjectSheet: View {
             HStack {
                 Button(action: {
                     viewModel.selectedSubject = nil
+                    viewModel.selectedGrade = nil
                     dismiss()
                 }) {
                     Text("Cancel")
@@ -31,18 +33,33 @@ struct SubjectSheet: View {
             }
             .padding(.bottom)
             
-            Text("Subject")
+            Text(isGradeSelected ? "Grade" : "Subject")
                 .font(.system(size: 18))
             
-            Picker("Subject", selection: $viewModel.selectedSubject) {
+            if isGradeSelected {
                 
-                ForEach(subjectGrades) { subject in
-                   
-                    Text(subject.name).tag(Optional(subject))
+                Picker("Grade", selection: $viewModel.selectedGrade) {
+                    
+                    ForEach(subjectGrades) { grade in
+                       
+                        Text(grade.grade).tag(Optional(grade))
+                    }
                 }
+                .pickerStyle(.wheel)
+                .presentationDetents([.height(UIScreen.main.bounds.height * 0.4)])
+                
+            } else {
+                
+                Picker("Subject", selection: $viewModel.selectedSubject) {
+                    
+                    ForEach(subjectGrades) { subject in
+                       
+                        Text(subject.name).tag(Optional(subject))
+                    }
+                }
+                .pickerStyle(.wheel)
+                .presentationDetents([.height(UIScreen.main.bounds.height * 0.4)])
             }
-            .pickerStyle(.wheel)
-            .presentationDetents([.height(UIScreen.main.bounds.height * 0.4)])
         }
     }
 }
