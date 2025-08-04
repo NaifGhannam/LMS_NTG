@@ -12,7 +12,7 @@ final class NetworkManager {
 
     func request<T: Decodable>(
         endpoint: APIEndpoint,
-        body: Encodable? = nil,
+        body: Enchodable? = nil,
         headers: [String: String]? = nil
     ) async throws -> T {
         guard let url = URL(string: endpoint.url) else {
