@@ -29,7 +29,7 @@ struct Student: Codable {
 struct Users: Codable {
     
     let userId: Int
-    let role: Role
+//    let role: Role
     let firstName: String
     let middleName: String
     let lastName: String
@@ -44,11 +44,11 @@ struct Users: Codable {
     let leftOn: String
 }
 
-struct Role: Codable {
-    
-    let roleId: Int
-    let roleName: String
-}
+//struct Role: Codable {
+//    
+//    let roleId: Int
+//    let roleName: String
+//}
 
 struct Grades: Codable {
     

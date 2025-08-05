@@ -12,7 +12,7 @@ class Login_ViewModel : ObservableObject {
     @Published var password = ""
     @Published var isLoading = false
     @Published var isLoggedIn = false
-    @Published var user: User?
+    @Published var loginResponse: LoginResponse?
     @Published var errorMessage: String?
 
     private let loginService: LoginServiceProtocol
@@ -34,9 +34,9 @@ class Login_ViewModel : ObservableObject {
 
         do {
             let result = try await loginService.login(email: email, password: password)
-            self.user = result.user
+            self.loginResponse = result
+            
             self.isLoggedIn = true
-//            TokenStore.shared.save(token: result.token)
         } catch {
             self.errorMessage = error.localizedDescription
         }
