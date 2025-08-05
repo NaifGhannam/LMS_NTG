@@ -30,6 +30,7 @@ class ForgetPasswordViewModel: ObservableObject {
             
             let result = try await forgetPasswordService.forgetPassword(email: email)
             self.message = result.message
+            print(result.message)
             
         } catch {
             self.errorMessage = error.localizedDescription

@@ -39,10 +39,17 @@ struct ForgetPasswordView: View {
                 
                 Spacer()
                 
-                if let error = viewModel.errorMessage {
-                    Text(error).foregroundColor(.red)
-                        .font(.title)
+                if viewModel.isLoading {
+                    ProgressView("Loading...")
+                } else {
+                    
+                    if let error = viewModel.errorMessage {
+                        
+                        Text(error).foregroundColor(.red)
+                    }
                 }
+                
+                Text(viewModel.message ?? "No Message")
                 
                 Spacer()
             }

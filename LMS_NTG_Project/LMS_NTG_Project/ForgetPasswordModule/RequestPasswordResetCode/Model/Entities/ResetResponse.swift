@@ -9,5 +9,7 @@ import Foundation
 
 struct ResetResponse: Codable {
     
-    var message: String
+    let expiresIn: String
+    let message: String
+    let email: String
 }
