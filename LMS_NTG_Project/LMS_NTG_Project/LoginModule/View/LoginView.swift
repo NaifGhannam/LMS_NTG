@@ -60,6 +60,7 @@ struct loginBox: View {
                     .keyboardType(.emailAddress)
                     .autocapitalization(.none)
                     .foregroundColor(.gray)
+                    
             }
             .padding()
             .background(Color(red: 0.95, green: 0.92, blue: 0.92))
