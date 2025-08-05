@@ -14,9 +14,7 @@ enum APIEndpoint {
     case verifyResetCode
     case resetPassword
     case getDegrees(id: Int)
-
     case studentInfo(id: Int)
-    
     case getStudentsAttendances(id: Int)
     case requestExam
     
@@ -26,6 +24,7 @@ enum APIEndpoint {
 
     var path: String {
         switch self {
+            
         case .login:
             return "api/v1/accounts/login"
         
@@ -43,8 +42,10 @@ enum APIEndpoint {
             
         case .getDegrees(let id):
             return "api/v1/degrees/student/\(id)"
+            
         case .studentInfo(let id):
             return ""
+            
         case .getStudentsAttendances(let id):
             return "/api/v1/students_attendances/\(id)"
             
@@ -75,8 +76,10 @@ enum APIEndpoint {
         
         case .studentInfo:
             return .get
+            
         case .getStudentsAttendances:
             return .get
+            
         case .requestExam:
             return .post 
         }
