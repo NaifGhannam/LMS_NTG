@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SessionSchedulingView: View {
+struct SessionSchedulingViewEx: View {
     
     @State private var selectedSubject: Options = .option
     @State private var selectedType: Options = .option
@@ -121,7 +121,7 @@ struct SessionSchedulingView: View {
 }
 
 #Preview {
-    SessionSchedulingView()
+    SessionSchedulingViewEx()
 }
 
 enum Options: String, CaseIterable, Identifiable {
