@@ -8,38 +8,18 @@
 import SwiftUI
 
 struct ExamSchedulingView: View {
-    var GradeSubject = ["Grade 10 - Math", "Grade 11 - Biology", "Grade 12 - Physics"]
-       @State private var selectedGradeSubject = "Grade 10 - Math"
-    @State private var duration = ""
-    @State private var Weightage = ""
-    @State private var room = ""
-    @State private var date = Date()
-    @State private var time = Date()
-    @State private var examType = ["midterm", "final"]
-    @State private var selectedExamType = "midterm"
+   @StateObject var viewModel = ExamSchedulingViewModel()
     var body: some View {
         
- 
-                       
         VStack(alignment : .leading , spacing: 10){
             
-            ZStack {
-                Color("PrimaryRed")
-                    .clipShape(RoundedCornerShape(corners: [.bottomRight], radius: 50))
-                
-                Text("Exam Scheduling")
-                    .font(.system(size: 26, weight: .bold))
-                    .foregroundColor(.white)
-                
-            }
-            .ignoresSafeArea()
-            .padding(.trailing,10)
+        HeaderView(title: "Exam Scheduling")
             
             VStack{
             //Grade-Subject
             Section(header: Text("Grade–Subject")) {
-                Picker("Grade Subject", selection: $selectedGradeSubject) {
-                    ForEach(GradeSubject, id: \.self) {
+                Picker("Grade Subject", selection: $viewModel.selectedGradeSubject) {
+                    ForEach(viewModel.GradeSubject, id: \.self) {
                         Text($0)
                     }
                 }
@@ -54,7 +34,7 @@ struct ExamSchedulingView: View {
             
             Section(header: Text("Duration")){
                 HStack{
-                    TextField("e.g., 90", text: $duration)
+                    TextField("e.g., 90", text: $viewModel.duration)
                     
                     Image(systemName: "applewatch")
                 }
@@ -65,13 +45,13 @@ struct ExamSchedulingView: View {
             
             Section(header: Text("Weightage")){
                 
-                TextField("e.g., 30", text: $Weightage)
+                TextField("e.g., 30", text: $viewModel.Weightage)
                     .padding()
                     .background(Color.white)
                 .cornerRadius(10)            }
             
             Section(header : Text("Room / Location")){
-                TextField("e.g. Room 204" ,text :$room )
+                TextField("e.g. Room 204" ,text :$viewModel.room )
                     .padding()
                     .background(Color.white)
                     .cornerRadius(10)
@@ -82,15 +62,15 @@ struct ExamSchedulingView: View {
             Section(header : Text("Date & Time")){
                 HStack{
                     
-                    DatePicker("Please enter a date", selection: $date, displayedComponents: .date).labelsHidden()
+                    DatePicker("Please enter a date", selection: $viewModel.date, displayedComponents: .date).labelsHidden()
                     Spacer()
-                    DatePicker("Please enter a time", selection: $time, displayedComponents: .hourAndMinute).labelsHidden()
+                    DatePicker("Please enter a time", selection: $viewModel.time, displayedComponents: .hourAndMinute).labelsHidden()
                 }.padding(.horizontal , 30)
             }
             
             Section(header : Text("Exam Type (Midterm/Final)")){
-                Picker("Exam Type",selection: $selectedExamType){
-                    ForEach(examType, id: \.self){
+                Picker("Exam Type",selection: $viewModel.selectedExamType){
+                    ForEach(viewModel.examType, id: \.self){
                         Text($0)
                         
                     }
@@ -103,7 +83,9 @@ struct ExamSchedulingView: View {
             
             HStack(){
                 Button(){
-                    print("Save")
+                    Task{
+                        await viewModel.addExam()
+                    }
                 }label: {
                     Text("Save")
                         .fontWeight(.bold)
