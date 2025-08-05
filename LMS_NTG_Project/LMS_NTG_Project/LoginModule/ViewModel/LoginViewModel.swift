@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+@MainActor
 class Login_ViewModel : ObservableObject {
     @Published var email = ""
     @Published var password = ""

@@ -19,7 +19,7 @@ enum APIEndpoint {
     case requestExam
     
     var baseURL: String {
-        return "https://lmsendpoints-production.up.railway.app/"
+        return "http://196.221.167.63:8080/"
     }
 
     var path: String {
