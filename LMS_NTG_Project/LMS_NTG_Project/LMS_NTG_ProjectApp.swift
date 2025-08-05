@@ -13,6 +13,7 @@ struct LMS_NTG_ProjectApp: App {
         WindowGroup {
             NavigationStack {
                 LoginView()
+
             }
         }
     }
