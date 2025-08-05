@@ -9,9 +9,9 @@ import Foundation
 
 struct VerifyResetCodeService: VerifyResetCodeServiceProtocol {
     
-    func verifyResetCode(code: String) async throws -> VerifyResetCodeResponse {
+    func verifyResetCode(email: String, code: String) async throws -> VerifyResetCodeResponse {
         
-        let request = VerifyResetCodeRequest(code: code)
+        let request = VerifyResetCodeRequest(email: email, code: code)
         
         return try await NetworkManager.shared.request(endpoint: .verifyResetCode, body: request)
         

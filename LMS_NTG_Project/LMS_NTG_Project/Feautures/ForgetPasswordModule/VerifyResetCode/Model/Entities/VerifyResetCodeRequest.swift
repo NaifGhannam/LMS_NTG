@@ -9,5 +9,6 @@ import Foundation
 
 struct VerifyResetCodeRequest: Codable {
     
+    let email: String
     let code: String
 }

@@ -8,5 +8,5 @@
 import Foundation
 
 protocol VerifyResetCodeServiceProtocol {
-    func verifyResetCode(code: String) async throws -> VerifyResetCodeResponse
+    func verifyResetCode(email: String, code: String) async throws -> VerifyResetCodeResponse
 }

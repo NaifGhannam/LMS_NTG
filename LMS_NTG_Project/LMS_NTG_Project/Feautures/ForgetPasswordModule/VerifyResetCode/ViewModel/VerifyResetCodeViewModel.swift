@@ -10,10 +10,12 @@ import Foundation
 @MainActor
 class VerifyResetCodeViewModel: ObservableObject {
     
-    @Published var code: String = ""
+    @Published var code: String = "347888"
+    @Published var email: String = "sarahsaber424@gmail.com"
     
     @Published var isLoading: Bool = false
     @Published var status: String?
+    @Published var message: String?
     @Published var errorMessage: String?
     
     private var verifyResetCodeService: VerifyResetCodeServiceProtocol
@@ -29,9 +31,15 @@ class VerifyResetCodeViewModel: ObservableObject {
         self.errorMessage = nil
         
         do {
-            let result = try await verifyResetCodeService.verifyResetCode(code: code)
             
-            self.status = result.status
+            let result = try await verifyResetCodeService.verifyResetCode(email: email, code: code)
+            
+            self.status = result.verified
+            self.message = result.message
+            
+            print("----------------------------------------------------------")
+            print("\(result.verified) - \(result.message)")
+            
         } catch {
             self.errorMessage = error.localizedDescription
         }

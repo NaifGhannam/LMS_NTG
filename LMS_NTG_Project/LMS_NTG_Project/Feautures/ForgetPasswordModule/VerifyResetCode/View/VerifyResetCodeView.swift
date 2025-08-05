@@ -25,12 +25,12 @@ struct VerifyResetCodeView: View {
                 Text("Get Your Code")
                     .font(.system(size: 22))
                 
-                Text("Please enter the 4 digit code that \nsent to your email address")
+                Text("Please enter the 6 digit code that \nsent to your email address")
                     .font(.system(size: 16))
                     .multilineTextAlignment(.center)
                     .foregroundColor(.black.opacity(0.55))
                 
-                OTPTextField(numberOfFields: 4, enteredOTP: $viewModel.code)
+                OTPTextField(numberOfFields: 6, enteredOTP: $viewModel.code)
                     .padding(.top, 20)
                 
                 HStack {
@@ -43,7 +43,23 @@ struct VerifyResetCodeView: View {
                 }
                 .font(.system(size: 12))
                 
-                CustomButton(title: "Verify and Proceed") {}
+                CustomButton(title: "Verify and Proceed") {
+                    Task { await viewModel.verifyResetCode() }
+                }
+                
+                Spacer()
+                
+                if viewModel.isLoading {
+                    ProgressView("Loading...")
+                } else {
+                    
+                    if let error = viewModel.errorMessage {
+                        
+                        Text(error).foregroundColor(.red)
+                    }
+                }
+                
+                Text(viewModel.message ?? "")
                 
                 Spacer()
             }

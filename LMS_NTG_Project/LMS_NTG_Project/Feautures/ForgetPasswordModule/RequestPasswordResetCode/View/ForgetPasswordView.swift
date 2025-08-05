@@ -49,7 +49,7 @@ struct ForgetPasswordView: View {
                     }
                 }
                 
-                Text(viewModel.message ?? "No Message")
+                Text(viewModel.message ?? "")
                 
                 Spacer()
             }
