@@ -12,6 +12,7 @@ struct EditProfileView: View {
     @State private var name: String = ""
     @State private var password: String = ""
     @State private var email: String = ""
+    @State private var avatarImage: UIImage? = nil
     
     var body: some View {
         VStack {
@@ -19,7 +20,7 @@ struct EditProfileView: View {
             
             VStack(alignment: .leading) {
                 
-                EditProfileHeader()
+                EditProfileHeader(avatarImage: $avatarImage)
                 
                 Divider()
                     .background(Color.primaryRed)
@@ -69,6 +70,8 @@ struct EditProfileView: View {
             
             Spacer()
         }
+        .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
     }
 }
 

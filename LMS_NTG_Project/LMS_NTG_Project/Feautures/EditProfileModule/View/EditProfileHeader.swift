@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EditProfileHeader: View {
     
-    @State private var avatarImage: UIImage?
+    @Binding var avatarImage: UIImage?
     
     var body: some View {
         
@@ -21,7 +21,7 @@ struct EditProfileHeader: View {
                 .frame(width: 76, height: 76)
                 .clipShape(Circle())
             
-            NavigationLink(destination: ImagePickerView()){
+            NavigationLink(destination: PreviewPhotoView(avatarImage: $avatarImage)){
                 Text("Edit Photo")
                     .font(.system(size: 13, weight: .semibold))
                     .foregroundColor(.black)
@@ -31,7 +31,9 @@ struct EditProfileHeader: View {
             .background(.lightGray.opacity(0.5))
             .cornerRadius(22)
             
-            Button(action: {}) {
+            Button(action: {
+                avatarImage = nil
+            }) {
                 
                 Text("Remove")
                     .font(.system(size: 13, weight: .semibold))
@@ -49,6 +51,6 @@ struct EditProfileHeader: View {
     }
 }
 
-#Preview {
-    EditProfileHeader()
-}
+//#Preview {
+//    EditProfileHeader()
+//}
