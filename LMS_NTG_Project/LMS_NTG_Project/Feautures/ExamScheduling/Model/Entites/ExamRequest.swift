@@ -10,7 +10,6 @@ import Foundation
 struct ExamRequest: Codable {
  
 
-    var gradeSubject: GradeSubject
     var examName: String
     var examDate: String
     var startTime: String
@@ -18,7 +17,4 @@ struct ExamRequest: Codable {
     var maxDegree: Int
     var successDegree: Int
     var type: String
-}
-struct GradeSubject: Codable {
-    var gradeSubjectId: Int
 }
