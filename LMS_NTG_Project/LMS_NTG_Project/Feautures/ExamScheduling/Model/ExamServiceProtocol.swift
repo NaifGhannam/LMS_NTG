@@ -8,5 +8,11 @@
 import Foundation
 
 protocol ExamServiceProtocol {
-    func requestExam(name: String, date: Date, time: Date,weightage : Int? , room: String?, duration: Int ,ExamType : String) async throws -> ExamResponse
+    func requestExam(gradeSubject: GradeSubject, examName: String
+                     , examDate: String
+                     , startTime: String
+                     , endTime: String
+                     , maxDegree: Int
+                     , successDegree: Int
+                     , type: String) async throws -> ExamResponse
 }

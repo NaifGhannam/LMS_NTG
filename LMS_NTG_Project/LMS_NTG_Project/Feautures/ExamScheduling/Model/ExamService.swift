@@ -8,15 +8,23 @@
 import Foundation
 
 struct ExamService  : ExamServiceProtocol{
-    func requestExam(name: String, date: Date, time: Date, weightage: Int?, room: String?, duration: Int, ExamType: String) async throws -> ExamResponse {
+    func requestExam(gradeSubject: GradeSubject,
+        examName: String
+    , examDate: String
+    , startTime: String
+    , endTime: String
+    , maxDegree: Int
+    , successDegree: Int
+    , type: String) async throws -> ExamResponse {
         
         let request = ExamRequest(
-                   name: name,
-                   date: date,
-                   time: time,
-                   weightage: 20,
-                   room: "A101",
-                   examType: "Midterm"
+            gradeSubject: gradeSubject, examName: examName
+            , examDate: examDate
+            , startTime: startTime
+            , endTime: endTime
+            , maxDegree: maxDegree
+            , successDegree: successDegree
+            , type: type
                )
         return try await NetworkManager.shared.request(
             endpoint: .requestExam,

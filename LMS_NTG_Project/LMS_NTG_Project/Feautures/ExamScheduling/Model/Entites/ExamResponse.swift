@@ -9,13 +9,9 @@
 
 import Foundation
 
-struct ExamResponse : Codable {
-    var name: String?
-    var date: Date?
-    var time: Date?
-    var weightage: Int?
-    var room : String?
-    var examType : String?
-    var duration : Int?
-    
+import Foundation
+
+struct ExamResponse: Codable {
+    let message: String
+    let status: String
 }

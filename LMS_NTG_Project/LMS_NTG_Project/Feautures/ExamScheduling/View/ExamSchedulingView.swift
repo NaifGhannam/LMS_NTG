@@ -85,6 +85,7 @@ struct ExamSchedulingView: View {
                 Button(){
                     Task{
                         await viewModel.addExam()
+                        print("added")
                     }
                 }label: {
                     Text("Save")
@@ -117,6 +118,8 @@ struct ExamSchedulingView: View {
             
             
             Spacer()
+                
+                Text(viewModel.message ?? "")
         }
             .padding(.horizontal ,20)
         }
