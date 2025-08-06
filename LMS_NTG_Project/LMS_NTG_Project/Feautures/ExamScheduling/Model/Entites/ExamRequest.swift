@@ -8,11 +8,17 @@
 import Foundation
 
 struct ExamRequest: Codable {
-    var name: String?
-    var date: Date?
-    var time: Date?
-    var weightage: Int?
-    var room : String?
-    var examType : String?
-    var duration : Int?
+ 
+
+    var gradeSubject: GradeSubject
+    var examName: String
+    var examDate: String
+    var startTime: String
+    var endTime: String
+    var maxDegree: Int
+    var successDegree: Int
+    var type: String
+}
+struct GradeSubject: Codable {
+    var gradeSubjectId: Int
 }
