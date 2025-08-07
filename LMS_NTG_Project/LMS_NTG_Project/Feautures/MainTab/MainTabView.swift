@@ -8,17 +8,15 @@
 import SwiftUI
 
 struct MainTabView: View {
-//    1 -> ADMIN
-//    2 -> STUDENT
-//    3 -> TEACHER
-    var UserType: Int = 2
+
+    @State private var roleId: Int = 2
     var body: some View {
         
         TabView {
-            switch UserType {
+            switch roleId {
             case 1: // admin
              
-                Text("profile")
+                Profile()
                     .tabItem {
                         Image("Profile")
                         Text("profile")
@@ -48,8 +46,7 @@ struct MainTabView: View {
                         Image("Dashbord_icon")
                         Text("Dashboard")
                     }
-                Text("profile")
-                    .tabItem {
+                Profile()                    .tabItem {
                         Image("Profile")
                         Text("profile")
                     
@@ -66,7 +63,7 @@ struct MainTabView: View {
                         Text("My Grades")
                     }
             case 3: // Techear
-                Text("profile")
+                Profile()
                     .tabItem {
                         Image("Profile")
                         Text("profile")
@@ -91,6 +88,9 @@ struct MainTabView: View {
         
         }
         .tint(Color("PrimaryRed"))
+        .onAppear {
+                    roleId = UserDefaults.standard.integer(forKey: "roleId")
+                }
     }
 }
 

@@ -14,6 +14,9 @@ class Login_ViewModel : ObservableObject {
     @Published var isLoggedIn = false
     @Published var loginResponse: LoginResponse?
     @Published var errorMessage: String?
+    
+    
+    
 
     private let loginService: LoginServiceProtocol
 
@@ -35,6 +38,13 @@ class Login_ViewModel : ObservableObject {
         do {
             let result = try await loginService.login(email: email, password: password)
             self.loginResponse = result
+            
+            UserDefaults.standard.set(true, forKey: "isLoggedIn")
+            UserDefaults.standard.set(result.userId, forKey: "userId")
+            UserDefaults.standard.set(result.role.roleId, forKey: "roleId")
+            UserDefaults.standard.set(result.role.roleName, forKey: "roleName")
+            UserDefaults.standard.set(result.email, forKey: "userEmail")
+
             
             self.isLoggedIn = true
         } catch {
