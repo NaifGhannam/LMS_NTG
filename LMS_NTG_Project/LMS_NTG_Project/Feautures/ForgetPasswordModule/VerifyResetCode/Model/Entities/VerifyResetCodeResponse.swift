@@ -9,7 +9,7 @@ import Foundation
 
 struct VerifyResetCodeResponse: Codable {
     
-    let verified: String
+    let verified: Bool
     let message: String
     let email: String
 }
