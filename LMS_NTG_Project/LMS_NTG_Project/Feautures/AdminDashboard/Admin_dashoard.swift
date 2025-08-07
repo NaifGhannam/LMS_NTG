@@ -182,7 +182,7 @@ struct UpComingExamsCard : View {
            
     }
 }
-//    #Preview {
-//        Admin_dashoard()
-//    }
+    #Preview {
+        Admin_dashoard()
+    }
 
