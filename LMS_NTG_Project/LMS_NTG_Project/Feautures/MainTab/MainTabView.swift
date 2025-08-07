@@ -28,7 +28,7 @@ struct MainTabView: View {
                         Image("Dashbord_icon")
                         Text("Dashboard")
                     }
-                SessionSchedulingViewEx()
+                SessionSchedulingView()
                     .tabItem {
                         Image(systemName: "calendar")
                         Text("Session Scheduling")
