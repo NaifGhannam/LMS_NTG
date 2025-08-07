@@ -18,6 +18,7 @@ struct LMS_NTG_ProjectApp: App {
                 else {
                     LoginView()
                 }
+
             }
         }
     }

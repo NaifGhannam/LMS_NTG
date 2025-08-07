@@ -11,6 +11,7 @@ import Foundation
 class ResetPasswordViewModel: ObservableObject {
     
     @Published var newPassword: String = ""
+    @Published var confirmNewPassword: String = ""
     
     @Published var isLoading: Bool = false
     @Published var message: String?
@@ -23,19 +24,19 @@ class ResetPasswordViewModel: ObservableObject {
         self.resetPasswordService = resetPasswordService
     }
     
-    func resetPassword() async {
+    func resetPassword(email: String, verificationCode: String) async -> Bool {
         
         self.isLoading = true
+        defer { self.isLoading = false }
         self.errorMessage = nil
         
         do {
-            let result = try await resetPasswordService.resetPassword(newPassword: newPassword, resetToken: "")
-            
+            let result = try await resetPasswordService.resetPassword(email: email, verificationCode: verificationCode, newPassword: newPassword)
             self.message = result.message
+            return true
         } catch {
             self.errorMessage = error.localizedDescription
+            return false
         }
-        
-        self.isLoading = false
     }
 }

@@ -26,6 +26,8 @@ struct CustomTextField: View {
                 Image(iconName)
                 
                 TextField(placeholder, text: $text)
+                    .textInputAutocapitalization(.never)
+                    .autocorrectionDisabled(true)
                 
             }
             .padding()

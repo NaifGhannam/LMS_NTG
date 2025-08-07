@@ -21,21 +21,21 @@ class ForgetPasswordViewModel: ObservableObject {
         self.forgetPasswordService = forgetPasswordService
     }
 
-    func forgetPassword() async {
+    func forgetPassword() async -> Bool {
         
-        isLoading = true
-        errorMessage = nil
+        self.isLoading = true
+        defer { self.isLoading = false }
+        self.errorMessage = nil
 
         do {
             
             let result = try await forgetPasswordService.forgetPassword(email: email)
             self.message = result.message
-            print(result.message)
+            return true
             
         } catch {
             self.errorMessage = error.localizedDescription
+            return false
         }
-
-        isLoading = false
     }
 }
