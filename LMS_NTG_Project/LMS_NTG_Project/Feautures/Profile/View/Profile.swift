@@ -8,9 +8,13 @@
 import SwiftUI
 
 struct Profile: View {
+   
+    @ObservedObject var logoutViewModel: Login_ViewModel
     var body: some View {
-        HeaderView(title: "Profile & Settings")
         
+        HeaderView(title: "Profile & Settings")
+        NavigationStack{
+            
         VStack{
             HStack {
                 Image(systemName: "person")
@@ -109,11 +113,32 @@ struct Profile: View {
                 
             }.padding(20)
             
+            
+            //logout
+            Button{
+                logoutViewModel.logout()
+            }label: {
+                Text("Logout")
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 53)
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .background(Color("PrimaryRed"))
+                    .cornerRadius(10)
+            }
+            .navigationDestination(isPresented: $logoutViewModel.isLoggedOut) {
+                LoginView()
+            }
+            .padding(100)
             Spacer()
         }
+        
+       } //   navigationStack end
     }
 }
 
 #Preview {
-    Profile()
+    Profile(logoutViewModel: Login_ViewModel())
 }
+
+

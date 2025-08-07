@@ -12,6 +12,7 @@ class Login_ViewModel : ObservableObject {
     @Published var password = ""
     @Published var isLoading = false
     @Published var isLoggedIn = false
+    @Published var isLoggedOut = false
     @Published var loginResponse: LoginResponse?
     @Published var errorMessage: String?
     
@@ -80,6 +81,18 @@ class Login_ViewModel : ObservableObject {
         return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: email)
     }
 
+    
+    func logout() {
+        UserDefaults.standard.removeObject(forKey: "isLoggedIn")
+        UserDefaults.standard.removeObject(forKey: "userId")
+        UserDefaults.standard.removeObject(forKey: "roleId")
+        UserDefaults.standard.removeObject(forKey: "roleName")
+        UserDefaults.standard.removeObject(forKey: "userEmail")
+       
+        isLoggedIn = false
+        isLoggedOut = true
+
+    }
     
 }
 

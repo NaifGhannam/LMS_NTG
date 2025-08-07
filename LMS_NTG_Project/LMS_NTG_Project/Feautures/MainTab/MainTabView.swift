@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainTabView: View {
+    @StateObject private var loginViewModel = Login_ViewModel()
 
     @State private var roleId: Int = 2
     var body: some View {
@@ -16,7 +17,7 @@ struct MainTabView: View {
             switch roleId {
             case 1: // admin
              
-                Profile()
+                Profile(logoutViewModel: loginViewModel)
                     .tabItem {
                         Image("Profile")
                         Text("profile")
@@ -46,7 +47,7 @@ struct MainTabView: View {
                         Image("Dashbord_icon")
                         Text("Dashboard")
                     }
-                Profile()                    .tabItem {
+                Profile(logoutViewModel: loginViewModel)                    .tabItem {
                         Image("Profile")
                         Text("profile")
                     
@@ -63,7 +64,7 @@ struct MainTabView: View {
                         Text("My Grades")
                     }
             case 3: // Techear
-                Profile()
+                Profile(logoutViewModel: loginViewModel)
                     .tabItem {
                         Image("Profile")
                         Text("profile")
