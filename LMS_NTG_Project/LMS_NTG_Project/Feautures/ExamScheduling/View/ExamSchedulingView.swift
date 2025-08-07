@@ -13,12 +13,14 @@ struct ExamSchedulingView: View {
     
 
     
-    @State private var selectedGradeSubject: GradeSubject? = nil
+ //   @State private var selectedGradeSubject: GradeSubject? = nil
     @State private var selectedExamType: ExamType? = nil
     @State private var isSheetPresented = false
     @State private var isSheetPresentedTimeStart = false
     @State private var isSheetPresentedTimeEnd = false
     
+    @State private var selectedGradeSubject: GradeSubject? = nil
+
     var body: some View {
         
         
@@ -28,13 +30,24 @@ struct ExamSchedulingView: View {
             
             VStack(spacing: 15) {
                 
-                PickerMenu(
-                    title: "Grade–Subject",
-                    placeholder: "Select Grade–Subject",
-                    iconName: "ion_chevron",
-                    selection: $selectedGradeSubject
+                Picker("Grade–Subject", selection: $selectedGradeSubject) {
+                    Text("Select").tag(nil as GradeSubject?)
+                        
+                    ForEach(GradeSubject.all) { subject in
+                        Text(subject.name).tag(subject as GradeSubject?)
+                    }
+                }
+                .frame(maxWidth: .infinity)
+                .frame(height: 40)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 15)
+                        .stroke(Color.primaryRed.opacity(0.5), lineWidth: 1)
+                        .shadow(color: .black.opacity(0.25), radius: 5)
                 )
-                
+                .cornerRadius(15)
+               .pickerStyle(.menu)
+             
+
                 VStack(alignment: .leading) {
                     
                     Text("Exam Name")
@@ -179,8 +192,11 @@ struct ExamSchedulingView: View {
             HStack(){
                 Button(){
                     Task{
-                        print("added")
+                        await viewModel.submitExam(
+                            selectedGradeSubject: selectedGradeSubject
+                                                   , selectedExamType: selectedExamType)
                     }
+                    
                 }label: {
                     Text("Save")
                         .fontWeight(.bold)
@@ -215,8 +231,15 @@ struct ExamSchedulingView: View {
             
             
            
-           
-            
+        
+        if let message = viewModel.message {
+            Text(message)
+                .font(.system(size: 16))
+                .foregroundColor(message.lowercased().contains("success") ? .green : .red)
+                .padding(.top, 10)
+                .frame(maxWidth: .infinity, alignment: .center)
+        }
+
             
             Spacer()
         
@@ -234,20 +257,4 @@ struct ExamSchedulingView: View {
 
 #Preview {
     ExamSchedulingView()
-}
-
-func formatTime(_ date: Date?) -> String {
-    guard let date = date else { return "N/A" }
-    let formatter = DateFormatter()
-    formatter.dateFormat = "HH:mm"
-    return formatter.string(from: date)
-}
-func formatDate(_ date: Date?) -> String {
-    guard let date = date else {
-        return "N/A"
-    }
-    
-    let formatter = DateFormatter()
-    formatter.dateStyle = .medium
-    return formatter.string(from: date)
 }

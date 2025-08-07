@@ -18,7 +18,8 @@ struct ExamService  : ExamServiceProtocol{
     , type: String) async throws -> ExamResponse {
         
         let request = ExamRequest(
-             examName: examName
+            gradeSubject: GradeSubjectIdWrapper(gradeSubjectId: gradeSubject.id)
+            , examName: examName
             , examDate: examDate
             , startTime: startTime
             , endTime: endTime
@@ -33,3 +34,4 @@ struct ExamService  : ExamServiceProtocol{
             
         }
 }
+

@@ -5,16 +5,17 @@
 //  Created by Naif on 10/02/1447 AH.
 //
 
-import Foundation
-
 struct ExamRequest: Codable {
- 
+    let gradeSubject: GradeSubjectIdWrapper
+    let examName: String
+    let examDate: String
+    let startTime: String
+    let endTime: String
+    let maxDegree: Int
+    let successDegree: Int
+    let type: String
+}
 
-    var examName: String
-    var examDate: String
-    var startTime: String
-    var endTime: String
-    var maxDegree: Int
-    var successDegree: Int
-    var type: String
+struct GradeSubjectIdWrapper: Codable {
+    let gradeSubjectId: Int
 }

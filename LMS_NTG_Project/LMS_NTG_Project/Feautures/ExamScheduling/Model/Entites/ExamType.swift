@@ -8,7 +8,10 @@
 
 
 enum ExamType: String, CaseIterable, Identifiable {
-    case Midterm,Monthly, Final , Quiz
+    case Midterm = "Midterm"
+    ,Monthly = "Monthly"
+    , Final = "Final"
+    , Quiz = "Quiz"
     
     var id: Self { self }
 }
