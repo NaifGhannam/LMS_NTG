@@ -10,12 +10,15 @@ import SwiftUI
 struct VerifyResetCodeView: View {
     
     @StateObject private var viewModel = VerifyResetCodeViewModel()
+    @State private var shouldNavigate = false
+    let email: String
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         
         NavigationStack {
             
-            HeaderView(showFirstIcon: true, title: "Email Verification")
+            HeaderView(showFirstIcon: true, fAction: { dismiss() }, title: "Email Verification")
             
             VStack(spacing: 15) {
                  
@@ -44,7 +47,12 @@ struct VerifyResetCodeView: View {
                 .font(.system(size: 12))
                 
                 CustomButton(title: "Verify and Proceed") {
-                    Task { await viewModel.verifyResetCode() }
+                    Task {
+                        let success =  await viewModel.verifyResetCode(email: email)
+                        if success {
+                            shouldNavigate = true
+                        }
+                    }
                 }
                 
                 Spacer()
@@ -59,17 +67,21 @@ struct VerifyResetCodeView: View {
                     }
                 }
                 
-                Text(viewModel.message ?? "")
+                NavigationLink(
+                    destination: ResetPasswordView(email: email, code: viewModel.code),
+                    isActive: $shouldNavigate,
+                    label: { EmptyView() }
+                )
+                .hidden()
                 
                 Spacer()
             }
             .padding(.horizontal, 40)
         }
+        .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
     }
 }
 
-#Preview {
-    VerifyResetCodeView()
-}
 
 

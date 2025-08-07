@@ -8,5 +8,5 @@
 import Foundation
 
 protocol ResetPasswordServiceProtocol {
-    func resetPassword(newPassword: String, resetToken: String) async throws -> ResetPasswordResponse
+    func resetPassword(email: String, verificationCode: String, newPassword: String) async throws -> ResetPasswordResponse
 }

@@ -9,9 +9,9 @@ import Foundation
 
 struct ResetPasswordService: ResetPasswordServiceProtocol {
     
-    func resetPassword(newPassword: String, resetToken: String) async throws -> ResetPasswordResponse {
+    func resetPassword(email: String, verificationCode: String, newPassword: String) async throws -> ResetPasswordResponse {
         
-        let request = ResetPasswordRequest(newPassword: newPassword, resetToken: resetToken)
+        let request = ResetPasswordRequest(email: email, verificationCode: verificationCode, newPassword: newPassword)
         
         return try await NetworkManager.shared.request(endpoint: .resetPassword, body: request)
     }

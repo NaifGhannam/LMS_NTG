@@ -9,5 +9,7 @@ import Foundation
 
 struct ResetPasswordResponse: Codable {
     
-    var message: String
+    let resetAt: String
+    let message: String
+    let email: String
 }

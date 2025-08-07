@@ -9,6 +9,7 @@ import Foundation
 
 struct ResetPasswordRequest: Codable {
     
+    let email: String
+    let verificationCode: String
     let newPassword: String
-    let resetToken: String
 }

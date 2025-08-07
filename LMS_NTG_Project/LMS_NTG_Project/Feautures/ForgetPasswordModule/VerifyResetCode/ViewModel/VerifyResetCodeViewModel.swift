@@ -10,11 +10,9 @@ import Foundation
 @MainActor
 class VerifyResetCodeViewModel: ObservableObject {
     
-    @Published var code: String = "347888"
-    @Published var email: String = "sarahsaber424@gmail.com"
-    
+    @Published var code: String = ""
     @Published var isLoading: Bool = false
-    @Published var status: String?
+    @Published var verified: Bool?
     @Published var message: String?
     @Published var errorMessage: String?
     
@@ -25,25 +23,23 @@ class VerifyResetCodeViewModel: ObservableObject {
         self.verifyResetCodeService = verifyResetCodeService
     }
     
-    func verifyResetCode() async {
+    func verifyResetCode(email: String) async -> Bool{
         
         self.isLoading = true
+        defer { self.isLoading = false }
         self.errorMessage = nil
         
         do {
             
             let result = try await verifyResetCodeService.verifyResetCode(email: email, code: code)
             
-            self.status = result.verified
+            self.verified = result.verified
             self.message = result.message
-            
-            print("----------------------------------------------------------")
-            print("\(result.verified) - \(result.message)")
+            return true
             
         } catch {
             self.errorMessage = error.localizedDescription
+            return false
         }
-        
-        self.isLoading = false
     }
 }
