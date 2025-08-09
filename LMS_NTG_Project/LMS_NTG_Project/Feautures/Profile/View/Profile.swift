@@ -74,24 +74,45 @@ struct Profile: View {
                     .padding()
                 
                 
-                Button{
-                    print("Language ")
-                }label: {
-                    Image("Language")
-                        .foregroundStyle( .black)
-                        .font(.system(size: 20, weight: .regular))
-                    Text("Language ")
-                        .foregroundStyle( .black)
-                        .font(.system(size: 18, weight: .regular))
-                    Spacer()
-                    
-                    Image(systemName: "chevron.right")
-                        .foregroundStyle( .black)
-                        .font(.system(size: 20, weight: .regular))
-                    
-                }.frame(height: 50)
-                    .padding()
+//                Button{
+//                    print("Language ")
+//                }label: {
+//                    Image("Language")
+//                        .foregroundStyle( .black)
+//                        .font(.system(size: 20, weight: .regular))
+//                    Text("Language ")
+//                        .foregroundStyle( .black)
+//                        .font(.system(size: 18, weight: .regular))
+//                    Spacer()
+//                    
+//                    Image(systemName: "chevron.right")
+//                        .foregroundStyle( .black)
+//                        .font(.system(size: 20, weight: .regular))
+//                    
+//                }.frame(height: 50)
+//                    .padding()
                 
+                NavigationLink {
+                    ChooseLanguageView()
+                } label: {
+                    HStack {
+                        Image("Language")
+                            .foregroundStyle(.black)
+                            .font(.system(size: 20, weight: .regular))
+                        
+                        Text("Language")
+                            .foregroundStyle(.black)
+                            .font(.system(size: 18, weight: .regular))
+                        
+                        Spacer()
+                        
+                        Image(systemName: "chevron.right")
+                            .foregroundStyle(.black)
+                            .font(.system(size: 20, weight: .regular))
+                    }
+                    .frame(height: 50)
+                    .padding()
+                }
                 
                 Button{
                     print("Change password")

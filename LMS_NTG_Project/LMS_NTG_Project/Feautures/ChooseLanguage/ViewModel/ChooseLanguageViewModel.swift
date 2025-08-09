@@ -7,10 +7,10 @@
 
 import Foundation
 
-class ChooseLanguageViewModel : ObservableObject {
-    @Published var selectedLanguage: AppLanguage = .english
-      
-      func saveLanguage() {
-          UserDefaults.standard.set(selectedLanguage.rawValue, forKey: "AppLanguage")
-      }
-}
+//class ChooseLanguageViewModel : ObservableObject {
+//    @Published var selectedLanguage: AppLanguage = .english
+//      
+//      func saveLanguage() {
+//          UserDefaults.standard.set(selectedLanguage.rawValue, forKey: "AppLanguage")
+//      }
+//}

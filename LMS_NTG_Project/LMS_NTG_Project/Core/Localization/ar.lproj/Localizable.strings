@@ -1,0 +1,24 @@
+/* 
+  Localizable.strings
+  LMS_NTG_Project
+
+  Created by NTG on 09/08/2025.
+  
+*/
+
+
+"home_title" = "مرحبًا";
+"greeting_name" = "مرحبًا، ";
+"one_off_tip" = "يمكنك تغيير اللغة في أي وقت.";
+"long_paragraph" = "هذه فقرة نصية أطول ستتوافق تلقائيًا مع اتجاه الواجهة الحالي.";
+"login_title" = "تسجيل الدخول";
+"email_placeholder" = "البريد الإلكتروني";
+"password_placeholder" = "كلمة المرور";
+"login_button" = "تسجيل";
+"settings_title" = "الإعدادات";
+"choose_language_title" = "اختر اللغة";
+"email_placeholder" = "البريد الإلكتروني";
+"password_placeholder" = "كلمة المرور";
+"remember_me" = "تذكرني";
+"forgot_password" = "هل نسيت كلمة المرور؟";
+"login_button" = "تسجيل الدخول";

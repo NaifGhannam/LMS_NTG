@@ -46,7 +46,6 @@ class Login_ViewModel : ObservableObject {
             UserDefaults.standard.set(result.role.roleName, forKey: "roleName")
             UserDefaults.standard.set(result.email, forKey: "userEmail")
 
-            
             self.isLoggedIn = true
         } catch {
             self.errorMessage = error.localizedDescription
