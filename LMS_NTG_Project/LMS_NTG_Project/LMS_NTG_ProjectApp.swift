@@ -20,7 +20,6 @@ struct LMS_NTG_ProjectApp: App {
 //                }
 //                Profile(logoutViewModel: Login_ViewModel())
                 LoginView()
-
             }
         }
     }

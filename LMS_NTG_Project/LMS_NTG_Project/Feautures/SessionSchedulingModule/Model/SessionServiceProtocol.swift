@@ -8,5 +8,7 @@
 import Foundation
 
 protocol SessionServiceProtocol {
-    func sessionScheduling() async throws -> SessionResponse
+    func sessionScheduling(classEntity: ClassEntity, gradeSubject: GradesSubject, sessionDate: String, sessionNumber: Int, type: String, status: String) async throws -> SessionResponse
+    func getGradeSubjects() async throws -> [GradeSubjects]
+    func getAllClasses() async throws -> [SchoolClass]
 }

@@ -19,7 +19,7 @@ struct DateTimePickerSheet: View {
             
             if pickerComponents == .date {
                 
-                DatePicker("Select Date", selection: $tempDate, displayedComponents: .date)
+                DatePicker("Select Date", selection: $tempDate, in: Date()... , displayedComponents: .date)
                     .datePickerStyle(.graphical)
                     .labelsHidden()
                     .tint(.primaryRed)
@@ -59,6 +59,6 @@ struct DateTimePickerSheet: View {
             }
             .padding(.horizontal, 22)
         }
-        .presentationDetents([.medium])
+        .presentationDetents([.height(UIScreen.main.bounds.height * 0.5)])
     }
 }

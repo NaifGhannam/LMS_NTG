@@ -66,12 +66,12 @@ struct ExamSchedulingView: View {
                         .cornerRadius(15)
                 }
                 
-                PickerMenu(
-                    title: "Exam Type",
-                    placeholder: "Exam Type",
-                    iconName: "ion_chevron",
-                    selection: $selectedExamType
-                )
+//                PickerMenu(
+//                    title: "Exam Type",
+//                    placeholder: "Exam Type",
+//                    iconName: "ion_chevron",
+//                    selection: $selectedExamType
+//                )
                 
                 HStack(spacing : 20){
                     

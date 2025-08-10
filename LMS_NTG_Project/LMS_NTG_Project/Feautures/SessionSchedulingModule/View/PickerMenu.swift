@@ -7,29 +7,32 @@
 
 import SwiftUI
 
-struct PickerMenu<T: RawRepresentable & CaseIterable & Identifiable>: View where T.RawValue == String {
+struct PickerMenu<DataType: Hashable>: View {
     
     let title: String
     let placeholder: String
     let iconName: String?
-    @Binding var selection: T?
+    let options: [DataType]
+    let getLabel: (DataType) -> String
+    @Binding var selection: DataType?
     
     var body: some View {
-        
         VStack(alignment: .leading) {
-            
             Text(title)
                 .font(.system(size: 18))
             
             Menu {
-                ForEach(Array(T.allCases)) { option in
-                    Button(action: { selection = option }) {
-                        Text(option.rawValue.capitalized)
+                ForEach(options, id: \.self) { option in
+                    Button(action: {
+                        selection = option
+                    }) {
+                        Text(getLabel(option))
                     }
                 }
+
             } label: {
                 HStack {
-                    Text(selection?.rawValue.capitalized ?? placeholder)
+                    Text(selection.map(getLabel) ?? placeholder)
                         .foregroundColor(selection == nil ? Color("TextGray") : .black)
                         .font(.system(size: 16))
                     
@@ -52,3 +55,4 @@ struct PickerMenu<T: RawRepresentable & CaseIterable & Identifiable>: View where
         }
     }
 }
+
