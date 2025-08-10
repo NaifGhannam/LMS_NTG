@@ -48,7 +48,7 @@ struct Profile: View {
                                 }
                             }
                             
-                            Text(profile.account.email)
+                            Text(profile.account?.email ?? "Email not set")
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
                         }
@@ -103,7 +103,7 @@ struct Profile: View {
                 Spacer()
             }
             .task {
-                await viewModel.loadProfile(userId: 1) // TODO: Replace 1 with actual logged in user ID
+                await viewModel.loadProfile(userId: 1)
             }
         }
     }

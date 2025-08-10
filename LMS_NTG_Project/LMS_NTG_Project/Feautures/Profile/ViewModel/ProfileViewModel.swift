@@ -21,7 +21,7 @@ class ProfileViewModel: ObservableObject {
         isLoading = true
         errorMessage = nil
         do{
-            let request = ProfileRequest(userId: userId) // ✅ wrap in ProfileRequest
+            let request = ProfileRequest(userId: userId)
 
             let response = try await service.fetchProfile( request: request)
             profile = response.data
