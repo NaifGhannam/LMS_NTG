@@ -47,22 +47,28 @@ struct TakeAttendanceView: View {
                             .foregroundColor(.black)
                     }
                 }
+                .padding(.vertical, 8)
                 
-                
-                VStack(spacing: 0) {
+                VStack(alignment: .center, spacing: 0) {
                     
                     Text("Name")
                         .font(.system(size: 18, weight: .medium))
-                        .frame(height: UIScreen.main.bounds.height * 0.12)
+                        .frame(height: UIScreen.main.bounds.height * 0.11)
                     
-                    Divider()
                     
                     List {
-                        ForEach(0..<6) { item in
-                            HStack {
+                        ForEach(0..<10) { item in
+                            
+                            VStack(alignment: .center, spacing: 0) {
+                                
+                                Divider()
+                                    .background(.black)
+                                
                                 Text("John Doe")
                                     .font(.system(size: 16, weight: .medium))
-                                    .frame(maxWidth: .infinity, alignment: .center)
+                                    .foregroundColor(.black.opacity(0.65))
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.vertical, 18)
                                     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                         
                                         Button(action: {}) {
@@ -71,11 +77,9 @@ struct TakeAttendanceView: View {
                                                 
                                                 Text("Mark As Present")
                                                     .font(.system(size: 16, weight: .medium))
-                                                
-                                                
                                             }
                                         }
-                                        .tint(Color.green)
+                                        .tint(Color.primaryGreen)
                                     }
                                     .swipeActions(edge: .leading, allowsFullSwipe: false) {
                                         
@@ -84,11 +88,12 @@ struct TakeAttendanceView: View {
                                                 .font(.system(size: 16, weight: .medium))
                                             
                                         }
-                                        .tint(.red)
+                                        .tint(Color.primaryRed)
                                     }
                             }
-                            .background(.red)
                         }
+                        .listRowSeparator(.hidden)
+                        .listRowInsets(EdgeInsets())
                     }
                     .listStyle(.plain)
                 }
@@ -96,8 +101,40 @@ struct TakeAttendanceView: View {
                     RoundedRectangle(cornerRadius: 29)
                         .stroke(Color.primaryRed, lineWidth: 2)
                 }
+                .cornerRadius(29)
+                .padding(.horizontal, 18)
+                
+                Spacer()
+                    .frame(height: 45)
+                
+                HStack {
+                    Button(action: {}) {
+                        Text("Clear Selection")
+                            .font(.system(size: 16, weight: .semibold))
+                    }
+                    .padding(.vertical)
+                    .padding(.horizontal, 10)
+                    .background(Color.primaryRed)
+                    .foregroundColor(.white)
+                    .cornerRadius(12)
+                    .shadow(color: .black.opacity(0.6), radius: 4)
+                    
+                    Spacer()
+                    
+                    Button(action: {}) {
+                        Text("Save Attendance")
+                            .font(.system(size: 16, weight: .semibold))
+                    }
+                    .padding(.vertical)
+                    .padding(.horizontal, 10)
+                    .background(Color.primaryGreen)
+                    .foregroundColor(.white)
+                    .cornerRadius(12)
+                    .shadow(color: .black.opacity(0.6), radius: 4)
+                }
+                .padding(.horizontal, 20)
             }
-            .padding(.horizontal, 20)
+            .padding(.horizontal, 25)
             
             Spacer()
         }
