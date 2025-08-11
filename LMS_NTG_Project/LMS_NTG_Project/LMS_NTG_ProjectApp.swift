@@ -19,7 +19,8 @@ struct LMS_NTG_ProjectApp: App {
 //                    LoginView()
 //                }
 //                Profile(logoutViewModel: Login_ViewModel())
-                LoginView()
+                //LoginView()
+                MyGradesView()
             }
         }
     }

@@ -47,27 +47,31 @@ struct MyGradesView: View {
                 
                 ForEach(viewModel.displayFilteredSubjects(), id: \.id) { subject in
                     
-                    HStack(spacing: 22) {
+                    NavigationLink(destination: GradeDetailsView(viewModel: viewModel, title: subject.name)) {
                         
-                        Image(subject.icon)
+                        HStack(spacing: 22) {
+                            
+                            Image(subject.icon)
 
-                        Text(subject.name)
-                        
-                        Spacer()
-                        
-                        Text(subject.grade)
-                            .font(.title2)
-                            .bold()
-                            .foregroundColor(.red)
-                            .shadow(color: .black.opacity(0.3), radius: 5, y: 3)
-                    }
-                    .padding(20)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .background(.white)
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 15)
-                            .stroke(Color.black.opacity(0.05), lineWidth: 1)
-                            .shadow(color: .black, radius: 1)
+                            Text(subject.name)
+                                .foregroundColor(.black)
+                            
+                            Spacer()
+                            
+                            Text(subject.grade)
+                                .font(.title2)
+                                .bold()
+                                .foregroundColor(.red)
+                                .shadow(color: .black.opacity(0.3), radius: 5, y: 3)
+                        }
+                        .padding(20)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(.white)
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 15)
+                                .stroke(Color.black.opacity(0.05), lineWidth: 1)
+                                .shadow(color: .black, radius: 1)
+                        }
                     }
                 }
                 .padding(.vertical, 10)
