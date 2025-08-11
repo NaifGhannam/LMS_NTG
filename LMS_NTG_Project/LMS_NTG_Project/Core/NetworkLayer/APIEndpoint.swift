@@ -18,6 +18,9 @@ enum APIEndpoint {
     case getStudentsAttendances(id: Int)
     case requestExam
     case sessionScheduling
+    case getProfile(id: Int)
+    case gradeSubjects
+    case allClasses
     
     var baseURL: String {
         return "http://196.221.167.63:8080/"
@@ -28,9 +31,9 @@ enum APIEndpoint {
             
         case .login:
             return "api/v1/accounts/login"
-        
-//        case .updateProfile(let id):
-//            return "/users/\(id)"
+            
+            //        case .updateProfile(let id):
+            //            return "/users/\(id)"
             
         case .requestReset:
             return "api/v1/accounts/request-reset"
@@ -52,9 +55,19 @@ enum APIEndpoint {
             
         case .requestExam:
             return ""
-        
+            
         case .sessionScheduling:
-            return ""
+            return "api/v1/sessions"
+            
+        case .getProfile(let id):
+            return "api/v1/accounts/\(id)"
+
+        case .gradeSubjects:
+            return "api/v1/grade-subjects"
+            
+        case .allClasses:
+            return "api/v1/classes/all"
+
         }
     }
 
@@ -86,6 +99,15 @@ enum APIEndpoint {
             
         case .sessionScheduling:
             return .post
+        
+        case .getProfile:
+            return .get
+            
+        case  .gradeSubjects:
+            return .get
+            
+        case .allClasses:
+            return .get
         }
     }
 
