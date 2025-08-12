@@ -10,8 +10,8 @@ import Foundation
 @MainActor
 class ChangePasswordViewModel: ObservableObject {
     
-    @Published var email = ""
-    @Published var currentPassword = ""
+    @Published var email = "tayman@ntgclarity.com"
+    @Published var currentPassword = "test25@NTG"
     @Published var newPassword = ""
     @Published var confirmNewPassword = ""
     @Published var message: String?

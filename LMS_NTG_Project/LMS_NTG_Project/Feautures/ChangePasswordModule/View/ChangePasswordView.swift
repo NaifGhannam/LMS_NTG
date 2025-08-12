@@ -65,6 +65,8 @@ struct ChangePasswordView: View {
                     }
                 }
                 
+                Text(viewModel.message ?? "")
+                
                 Spacer()
             }
             .padding(.horizontal, 40)
