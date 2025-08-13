@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		D25C22142E4C7ECA00A54F83 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D25C22122E4C7ECA00A54F83 /* Localizable.strings */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		D2F911C42E26544E00D7AC7E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,6 +28,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D25C22132E4C7ECA00A54F83 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D25C22152E4C7F1E00A54F83 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D2F911B62E26544D00D7AC7E /* LMS_NTG_Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LMS_NTG_Project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2F911C32E26544E00D7AC7E /* LMS_NTG_ProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LMS_NTG_ProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2F911CD2E26544E00D7AC7E /* LMS_NTG_ProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LMS_NTG_ProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,6 +81,7 @@
 		D2F911AD2E26544D00D7AC7E = {
 			isa = PBXGroup;
 			children = (
+				D25C22122E4C7ECA00A54F83 /* Localizable.strings */,
 				D2F911B82E26544D00D7AC7E /* LMS_NTG_Project */,
 				D2F911C62E26544E00D7AC7E /* LMS_NTG_ProjectTests */,
 				D2F911D02E26544E00D7AC7E /* LMS_NTG_ProjectUITests */,
@@ -192,6 +199,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ar,
 			);
 			mainGroup = D2F911AD2E26544D00D7AC7E;
 			minimizedProjectReferenceProxies = 1;
@@ -212,6 +220,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D25C22142E4C7ECA00A54F83 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +276,18 @@
 			targetProxy = D2F911CE2E26544E00D7AC7E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D25C22122E4C7ECA00A54F83 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D25C22132E4C7ECA00A54F83 /* en */,
+				D25C22152E4C7F1E00A54F83 /* ar */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		D2F911D52E26544E00D7AC7E /* Debug */ = {
@@ -328,6 +349,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -384,6 +406,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
