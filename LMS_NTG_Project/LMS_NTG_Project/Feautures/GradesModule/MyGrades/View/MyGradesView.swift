@@ -47,7 +47,7 @@ struct MyGradesView: View {
                 
                 ForEach(viewModel.displayFilteredSubjects(), id: \.id) { subject in
                     
-                    NavigationLink(destination: GradeDetailsView(viewModel: viewModel, title: subject.name)) {
+                    NavigationLink(destination: GradeDetailsView(title: subject.name)) {
                         
                         HStack(spacing: 22) {
                             

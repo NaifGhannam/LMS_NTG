@@ -22,6 +22,7 @@ enum APIEndpoint {
     case gradeSubjects
     case allClasses
     case changePassword
+    case getGradesDetails(userId: Int, subjectId: Int)
     
     var baseURL: String {
         return "http://196.221.167.63:8080/"
@@ -71,6 +72,9 @@ enum APIEndpoint {
             
         case .changePassword:
             return "api/v1/accounts"
+            
+        case .getGradesDetails(let userId, let subjectId):
+            return "api/v1/degrees/subject-degree?userId=\(userId)&subjectId=\(subjectId)"
 
         }
     }
@@ -115,6 +119,9 @@ enum APIEndpoint {
             
         case .changePassword:
             return .put
+            
+        case .getGradesDetails:
+            return .get
         }
     }
 
