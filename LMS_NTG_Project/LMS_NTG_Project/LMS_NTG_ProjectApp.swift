@@ -12,13 +12,8 @@ struct LMS_NTG_ProjectApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                if UserDefaults.standard.bool(forKey: "isLoggedIn") {
-                        MainTabView()
-                }
-                else {
-                    LoginView()
-                }
-              
+                
+                SplashView()
                 
             }
         }
