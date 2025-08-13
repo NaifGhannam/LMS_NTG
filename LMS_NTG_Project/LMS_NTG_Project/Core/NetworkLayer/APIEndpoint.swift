@@ -55,7 +55,7 @@ enum APIEndpoint {
             return "/api/v1/students_attendances/\(id)"
             
         case .requestExam:
-            return ""
+            return "api/v1/exams"
             
         case .sessionScheduling:
             return "api/v1/sessions"
