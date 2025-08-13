@@ -41,7 +41,7 @@ struct MainTabView: View {
                         Text("Exam Scheduling")
                     }
                 
-            case 2:  // Student
+            case 3:  // Student
                 StudentDashboardView()
                     .tabItem {
                         Image("Dashbord_icon")
@@ -63,7 +63,7 @@ struct MainTabView: View {
                         Image("A+")
                         Text("My Grades")
                     }
-            case 3: // Techear
+            case 2: // Techear
                 Profile(logoutViewModel: loginViewModel)
                     .tabItem {
                         Image("Profile")
