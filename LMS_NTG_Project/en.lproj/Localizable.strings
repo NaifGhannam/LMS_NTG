@@ -7,4 +7,14 @@
 */
 "Email" = "Email";
 
+"profileTitle" = "Profile & Settings";
+"notifications" = "Notifications";
+"language" = "Language";
+"changePassword" = "Change password";
+
+// Test
+"changeLanguage" = "Choose your language";
+"languageSelection" = "Language Selection";
+"welcomMessage" = "Welcome to the localization app!";
+"appTitle" = "Localization App In SwiftUI";
 
