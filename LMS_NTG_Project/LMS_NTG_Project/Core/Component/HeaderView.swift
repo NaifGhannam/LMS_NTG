@@ -17,7 +17,7 @@ struct HeaderView: View {
     @State var secondIcon: String = "white_upload"
     @State var sAction: (() -> ())?
     
-    @State var title: String = "Title"
+    var title: String = "Title"
     
     var body: some View {
         VStack {

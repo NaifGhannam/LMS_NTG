@@ -9,12 +9,15 @@ import SwiftUI
 
 @main
 struct LMS_NTG_ProjectApp: App {
+    
+    @StateObject var languageManager = LanguageManager.shared
+    
     var body: some Scene {
         WindowGroup {
             NavigationStack {
                 
-                SplashView()
-                
+                Profile(logoutViewModel: Login_ViewModel())
+                    .environmentObject(languageManager)
             }
         }
     }

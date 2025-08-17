@@ -6,3 +6,17 @@
   
 */
 "Email" = "الايميل";
+
+"profileTitle" = "الملف الشخصي & الإعدادات";
+"notifications" = "الإشعارات";
+"language" = "اللغة";
+"changePassword" = "تغيير كلمة المرور";
+
+
+// Test
+"changeLanguage" = "اختر لغتك";
+"languageSelection" = "اختيار اللغة";
+"welcomMessage" = "مرحبًا بك في تطبيق الترجمة!";
+"appTitle" = "تطبيق الترجمة في SwiftUI";
+
+
