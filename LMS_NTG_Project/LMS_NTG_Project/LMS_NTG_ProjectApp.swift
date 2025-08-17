@@ -13,7 +13,7 @@ struct LMS_NTG_ProjectApp: App {
         WindowGroup {
             NavigationStack {
                 
-                SplashView()
+                Profile(logoutViewModel: Login_ViewModel())
                 
             }
         }

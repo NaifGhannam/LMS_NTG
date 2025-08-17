@@ -10,6 +10,7 @@ import SwiftUI
 struct TakeAttendanceView: View {
     
     @State var isSelectAll: Bool = false
+    @StateObject private var viewModel = TakeAttendanceViewModel()
     
     var body: some View {
         VStack {
@@ -137,6 +138,9 @@ struct TakeAttendanceView: View {
             .padding(.horizontal, 25)
             
             Spacer()
+        }
+        .task {
+            await viewModel.getStudents()
         }
     }
 }
