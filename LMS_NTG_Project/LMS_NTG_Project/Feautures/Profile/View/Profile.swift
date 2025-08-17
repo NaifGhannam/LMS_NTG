@@ -36,7 +36,7 @@ struct Profile: View {
                         
                         VStack(alignment: .leading) {
                             HStack {
-                            Text("\(profile.firstName!) \(profile.lastName!)")
+                            Text("\(profile.firstName ?? "null") \(profile.lastName ?? "null" )")
                                     .font(.headline)
                                 
                                 Button {
