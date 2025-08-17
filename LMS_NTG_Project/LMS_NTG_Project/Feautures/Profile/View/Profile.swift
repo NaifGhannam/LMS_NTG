@@ -36,7 +36,7 @@ struct Profile: View {
                         
                         VStack(alignment: .leading) {
                             HStack {
-                                Text("\(profile.firstName) \(profile.lastName)")
+                            Text("\(profile.firstName!) \(profile.lastName!)")
                                     .font(.headline)
                                 
                                 Button {
@@ -103,7 +103,12 @@ struct Profile: View {
                 Spacer()
             }
             .task {
-                await viewModel.loadProfile(userId: 1)
+                // Load profile using saved userId from UserDefaults
+                if let savedId = UserDefaults.standard.value(forKey: "userId") as? Int {
+                    await viewModel.loadProfile(userId: savedId)
+                } else {
+                    viewModel.errorMessage = "⚠️ No userId found in UserDefaults"
+                }
             }
         }
     }
