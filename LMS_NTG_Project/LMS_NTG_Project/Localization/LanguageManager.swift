@@ -11,13 +11,12 @@ class LanguageManager: ObservableObject {
     
     static let shared = LanguageManager()
     
-    @Published var selectedLanguage: String = "en"
-    
+    @Published var currentLanguage: String = UserDefaults.standard.string(forKey: "MyLanguages") ?? "en"
+
     func setLanguage(_ languageCode: String) {
-        if Bundle.main.localizations.contains(languageCode) {
-            UserDefaults.standard.set([languageCode], forKey: "MyLanguages")
-            selectedLanguage = languageCode
-        }
+        guard Bundle.main.localizations.contains(languageCode) else { return}
+        UserDefaults.standard.set(languageCode, forKey: "MyLanguages")
+        currentLanguage = languageCode
     }
     
     var supportedLanguages: [String] {

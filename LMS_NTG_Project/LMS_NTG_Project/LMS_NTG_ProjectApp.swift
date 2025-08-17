@@ -15,10 +15,9 @@ struct LMS_NTG_ProjectApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
+                SplashView()
                 
-                Profile(logoutViewModel: Login_ViewModel())
-                    .environmentObject(languageManager)
-            }
+            }.environmentObject(languageManager)
         }
     }
 }

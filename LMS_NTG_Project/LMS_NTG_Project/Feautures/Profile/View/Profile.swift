@@ -7,118 +7,138 @@
 import SwiftUI
 
 struct Profile: View {
+    
     @ObservedObject var logoutViewModel: Login_ViewModel
     @StateObject private var viewModel = ProfileViewModel()
-    @AppStorage("MyLanguages") var currentLanguage: String = Locale.current.language.languageCode?.identifier ?? "en"
     @EnvironmentObject var languageManager: LanguageManager
-    @State private var isLanguageSelectionActive: Bool = false
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
-        NavigationStack {
-            VStack {
-                // Header
-                HeaderView(title: "profileTitle".localized(using: currentLanguage))
+        VStack {
+            
+            HeaderView(title: "profileTitle".localized(using: languageManager.currentLanguage))
+            
+            if viewModel.isLoading {
+                ProgressView("loadingProfile".localized(using: languageManager.currentLanguage))
+                    .padding()
+            } else if let error = viewModel.errorMessage {
+                Text("⚠️ \(error)")
+                    .foregroundColor(.red)
+                    .padding()
+            } else if let profile = viewModel.profile {
                 
-//                if viewModel.isLoading {
-//                    ProgressView("Loading profile...")
-//                        .padding()
-//                } else if let error = viewModel.errorMessage {
-//                    Text("Error: \(error)")
-//                        .foregroundColor(.red)
-//                        .padding()
-//                } else if let profile = viewModel.profile {
-                    // Profile Info
-                    HStack {
-                        Image(systemName: "person")
-                            .resizable()
-                            .frame(width: 70, height: 70)
-                            .clipShape(Circle())
-                            .padding(.leading)
-                        
-                        Spacer()
-                        
-                        VStack(alignment: .leading) {
-                            HStack {
-
-                                Text("\(profile.firstName ?? "null") \(profile.lastName ?? "null" )")
-                                    .font(.headline)
-                                
-                                Button {
-                                    print("Edit Profile")
-                                } label: {
-                                    Image("edit_profile")
-                                        .resizable()
-                                        .frame(width: 15, height: 15)
-                                }
-                            }
+                HStack {
+                    Image(systemName: "person")
+                        .resizable()
+                        .frame(width: 70, height: 70)
+                        .clipShape(Circle())
+                        .padding(.leading)
+                    
+                    Spacer()
+                    
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Text("\(profile.firstName ?? "null") \(profile.lastName ?? "null")")
+                                .font(.headline)
                             
-//                            Text(profile.account?.email ?? "Email not set")
-//                                .font(.subheadline)
-//                                .foregroundColor(.gray)
-                        }
-                        .padding(.trailing, 60)
-                    }
-                    .padding(20)
-                    .frame(maxWidth: .infinity)
-                    .background(Color.white)
-                    
-                    // Divider
-                    Rectangle()
-                        .frame(height: 1)
-                        .padding(.horizontal, 30)
-                        .foregroundColor(Color("line_color"))
-                    
-                    // Settings Buttons
-                    VStack {
-                        settingsButton(image: "bell2", title: "notifications".localized(using: currentLanguage))
-                        
-                        NavigationLink(destination: ChooseLanguageView()
-                            .environmentObject(languageManager)) {
-                                settingsButton(image: "Language", title: "language".localized(using: currentLanguage))
+                            Button {
+                                print("Edit Profile tapped")
+                            } label: {
+                                Image("edit_profile")
+                                    .resizable()
+                                    .frame(width: 15, height: 15)
                             }
+                        }
                         
-                        settingsButton(image: "password2", title: "changePassword".localized(using: currentLanguage))
+                        Text(profile.account?.email ?? "emailNotSet".localized(using: languageManager.currentLanguage))
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
                     }
-                    .padding(20)
-                    
-                    // Logout
-                    Button {
-                        logoutViewModel.logout()
-                    } label: {
-                        Text("Logout")
-                            .frame(maxWidth: .infinity)
-                            .frame(height: 53)
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .background(Color("PrimaryRed"))
-                            .cornerRadius(10)
-                    }
-                    .navigationDestination(isPresented: $logoutViewModel.isLoggedOut) {
-                        LoginView()
-                    }
-                    .padding(100)
-                    
-//                } else {
-//                    Text("No profile data found")
-//                        .padding()
-//                }
-                
-                Spacer()
-            }
-            .task {
-                // Load profile using saved userId from UserDefaults
-                if let savedId = UserDefaults.standard.value(forKey: "userId") as? Int {
-                    await viewModel.loadProfile(userId: savedId)
-                } else {
-                    viewModel.errorMessage = "⚠️ No userId found in UserDefaults"
+                    .padding(.trailing, 60)
                 }
+                .padding(20)
+                .frame(maxWidth: .infinity)
+                .background(Color.white)
+                
+                Rectangle()
+                    .frame(height: 1)
+                    .padding(.horizontal, 30)
+                    .foregroundColor(Color("line_color"))
+                
+                VStack(spacing: 15) {
+                    settingsButton(image: "bell2", title: "notifications".localized(using: languageManager.currentLanguage)) {
+                        print("Notifications tapped")
+                    }
+                    
+                    NavigationLink(destination:
+                                    ChooseLanguageView()
+                                    .environmentObject(languageManager)
+                    ) {
+                        settingsButtonView(image: "Language", title: "language".localized(using: languageManager.currentLanguage))
+                    }
+                    
+                    settingsButton(image: "password2", title: "changePassword".localized(using: languageManager.currentLanguage)) {
+                        print("Change password tapped")
+                    }
+                }
+                .padding(20)
+                
+                Button {
+                    logoutViewModel.logout()
+                } label: {
+                    Text("logout".localized(using: languageManager.currentLanguage))
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 53)
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .background(Color("PrimaryRed"))
+                        .cornerRadius(10)
+                }
+                .navigationDestination(isPresented: $logoutViewModel.isLoggedOut) {
+                    LoginView()
+                        .environmentObject(languageManager)
+                }
+                .padding(100)
+                
+            } else {
+                Text("noProfileData".localized(using: languageManager.currentLanguage))
+                    .padding()
+            }
+            
+            Spacer()
+        }
+        .task {
+            if let savedId = UserDefaults.standard.value(forKey: "userId") as? Int {
+                await viewModel.loadProfile(userId: savedId)
+            } else {
+                viewModel.errorMessage = "⚠️ No userId found in UserDefaults"
             }
         }
     }
     
-    // Reusable settings button
+    // MARK: - Helper Views
     @ViewBuilder
-    private func settingsButton(image: String, title: String) -> some View {
+    private func settingsButton(image: String, title: String, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            HStack {
+                Image(image)
+                    .foregroundStyle(.black)
+                    .font(.system(size: 20, weight: .regular))
+                Text(title)
+                    .foregroundStyle(.black)
+                    .font(.system(size: 18, weight: .regular))
+                Spacer()
+                Image(systemName: "chevron.right")
+                    .foregroundStyle(.black)
+                    .font(.system(size: 20, weight: .regular))
+            }
+            .frame(height: 50)
+            .padding(.horizontal)
+        }
+    }
+    
+    @ViewBuilder
+    private func settingsButtonView(image: String, title: String) -> some View {
         HStack {
             Image(image)
                 .foregroundStyle(.black)
@@ -132,9 +152,6 @@ struct Profile: View {
                 .font(.system(size: 20, weight: .regular))
         }
         .frame(height: 50)
+        .padding(.horizontal)
     }
-}
-
-#Preview {
-    Profile(logoutViewModel: Login_ViewModel())
 }
