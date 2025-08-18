@@ -70,7 +70,7 @@ struct MainTabView: View {
                         Image("Profile")
                         Text("profile")
                     }
-                Text("Dashboard")
+                TeacherDashboard()
                     .tabItem {
                         Image("Dashbord_icon")
 

@@ -6,83 +6,70 @@
 //
 
 import SwiftUI
-
 struct ListOfClasses: View {
     
-    @State var toDayClasses : [ToDayClass] = [
-        ToDayClass(name: "Grade 5A - Mathematics", time: "08:00 - 09:00", status: .incoming, room: "Room 201 | 22 Student"),
-        ToDayClass(name: "Grade 6B - Mathematics", time: "9:00 - 10:00", status: .upcoming, room: "Room 251 | 22 Student"),
-        ToDayClass(name: "Grade 5A - Mathematics", time: "9:00 - 10:00", status: .upcoming, room: "Room 201 | 5 Student"),
-    ]
+    var toDayClasses: [ToDayClass]
     
     var body: some View {
-        
         VStack(alignment: .leading, spacing: 0) {
             
-            Text("Todays Classes")
+            Text("Today's Classes")
                 .font(.headline)
                 .padding(.bottom, 5)
             
             VStack(spacing: 0) {
-                ForEach(toDayClasses.indices, id: \.self) { index in
+                ForEach(toDayClasses) { item in
                     HStack {
-                        Text(toDayClasses[index].time)
+                        Text(item.time)
                             .font(.caption)
                             .foregroundColor(.secondary)
                         Spacer()
                         
                         VStack(alignment: .leading) {
-                            Text(toDayClasses[index].name)
+                            Text(item.name)
                                 .font(.system(size: 14, weight: .bold))
-                            Text(toDayClasses[index].room)
+                            Text(item.room)
                                 .font(.caption)
                                 .foregroundColor(.secondary)
                         }
                         Spacer()
                         
-                        Text(toDayClasses[index].status.rawValue)
+                        Text(item.status.displayText)
                             .font(.caption)
-                            .foregroundColor(toDayClasses[index].status.color)
+                            .foregroundColor(item.status.color)
                             .padding(6)
-                            .background(toDayClasses[index].status.color.opacity(0.2))
+                            .background(item.status.color.opacity(0.2))
                             .cornerRadius(5)
                     }
                     .padding(.vertical, 8)
                     
-                    if index < toDayClasses.count - 1 {
-                        Divider()
-                    }
+                    Divider()
                 }
             }
         }
         .padding(.horizontal)
     }
 }
+import SwiftUI
 
-#Preview {
-    ListOfClasses()
-}
-
-
-struct ToDayClass : Identifiable  {
-    var id : UUID = UUID()
-    var name : String
-    var time : String
-    var status : ClassStatus
-    var room : String
-}
-
-enum ClassStatus : String {
-    case incoming = "In coming", upcoming = "Up coming" , finished = "Finished"
+enum ClassStatus: String {
+    case coming = "Coming"
+    case upcoming = "Upcoming"
+    case finished = "Finished"
+    
+    var displayText: String {
+        switch self {
+        case .coming: return "In Coming"
+        case .upcoming: return "Up Coming"
+        case .finished: return "Finished"
+        }
+    }
     
     var color: Color {
         switch self {
-        case .incoming:
-            return .green
-        case .upcoming:
-            return .chartBlue
-        case .finished:
-            return .red
+        case .coming: return .green
+        case .upcoming: return .blue
+        case .finished: return .red
         }
     }
 }

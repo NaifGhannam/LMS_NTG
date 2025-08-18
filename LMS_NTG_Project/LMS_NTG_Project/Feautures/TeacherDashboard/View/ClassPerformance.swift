@@ -10,54 +10,48 @@ import Charts
 
 struct ClassPreformance: View {
     
-    @State var data : [ClassOpject] = []
-    
+    let data: [ClassOpject]
     
     var body: some View {
-   
-        VStack(alignment : .leading){
-            Text("Class Preformance")
-            HStack{
+        VStack(alignment: .leading) {
+            
+            Text("Class Performance")
+                .font(.headline)
+            
+            HStack {
                 Spacer()
-                
-                Text("Avreage Score % ")
+                Text("Average Score %")
                     .font(.caption)
                     .foregroundStyle(.btnText)
-
                 Spacer()
-
             }
-           
-            Chart{
-                ForEach(data ){ inst in
+            
+            Chart {
+                ForEach(data) { inst in
                     BarMark(
-                        x : .value("CLASS NAME", inst.name),
-                        y :.value("value", Double(inst.value))
-                    ).foregroundStyle(inst.Color)
-                    
+                        x: .value("Class Name", inst.name),
+                        y: .value("Value", Double(inst.value))
+                    )
+                    .foregroundStyle(inst.Color)
                 }
             }
-        }//.padding()
-     
-        
-        
-        
+            .frame(height: 250)
+        }
+        .padding()
     }
 }
 
 #Preview {
     ClassPreformance(data: [
-        ClassOpject(name: "Grade 5A", value: 92 , Color : .green ),
-        ClassOpject(name: "Grade 6A", value: 65, Color : .pink),
-        ClassOpject(name: "Grade 6B", value: 80, Color : .blue)
-    ]
-    )
+        ClassOpject(name: "Grade 5A", value: 92 , Color: .green),
+        ClassOpject(name: "Grade 6A", value: 65, Color: .pink),
+        ClassOpject(name: "Grade 6B", value: 80, Color: .blue)
+    ])
 }
 
-struct ClassOpject : Identifiable {
-    var id : UUID = UUID()
-    var name : String
-    var value : Int
-    var Color : Color
+struct ClassOpject: Identifiable {
+    var id: UUID = UUID()
+    var name: String
+    var value: Int
+    var Color: Color
 }
-

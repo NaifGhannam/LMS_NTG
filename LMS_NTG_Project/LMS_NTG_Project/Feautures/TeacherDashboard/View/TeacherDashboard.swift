@@ -4,77 +4,78 @@
 //
 //  Created by Naif on 27/01/1447 AH.
 //
-
-
-
 import SwiftUI
-
 struct TeacherDashboard: View {
-    
-    var body: some View {
-        
+@StateObject private var viewModel = TeacherDashboardViewModel()
+
+var body: some View {
+    VStack {
         HeaderView(title: "Dashboard")
         
         ScrollView {
-            
-            VStack {
-                
-                TeacherDashboardButtons()
-                
-                ListOfClasses()
-                    .background(.red)
-                
-                ClassPreformance(data: [
-                    ClassOpject(name: "Grade 5A", value: 92, Color: .green),
-                    ClassOpject(name: "Grade 6A", value: 65, Color: .pink),
-                    
-                    ClassOpject(name: "Grade 6A", value: 65, Color: .pink),
-                    ClassOpject(name: "Grade 6A", value: 65, Color: .pink),
-                    ClassOpject(name: "Grade 6A", value: 65, Color: .pink),
-                    ClassOpject(name: "Grade 6B", value: 80, Color: .blue)
-                ])
-                .background(.gray)
-                
-                VStack {
-                    
-                    HStack {
-                        Text("Top preforming Class")
-                        Spacer()
-                        Text("Grade 5A 92%")
-                    }
-                    
-                    Rectangle()
-                        .frame(width: .infinity, height: 1)
-                        .foregroundColor(.gray)
-                    
-                    HStack {
-                        Text("Most improved")
-                        Spacer()
-                        Text("Grade 6B (+15%)")
-                    }
-                    
-                    Rectangle()
-                        .frame(width: .infinity, height: 1)
-                        .foregroundColor(.gray)
-                    
-                    HStack {
-                        Text("Attention needed")
-                        Spacer()
-                        Text("Grade 6A 68%")
-                    }
-                    
+            VStack(spacing: 20) {
+                if let data = viewModel.dashboardData {
+                    TeacherDashboardButtons(
+                        studentsCount: data.studentsCount,
+                        subjectsCount: data.subjectsCount,
+                        assignmentsCount: data.assignmentsCount
+                    )
                 }
-                .padding()
-            }
-        }
-        
-        Spacer()
-    } // end body
+
+                // Show classes list
+                if let data = viewModel.dashboardData {
+                    ListOfClasses(
+                        toDayClasses: data.teacherTodayClasses.map { $0.toUIModel() }
+                    )
+                    
+                    // Class performance chart
+                    ClassPreformance(data: data.classPerformance.map {
+                        ClassOpject(
+                            name: $0.className,
+                            value: Int($0.performanceScore),
+                            Color: .blue
+                        )
+                    })
+                    .frame(height: 250)
+                    
+                    // --- Text Insights ---
+                    VStack(alignment: .leading, spacing: 8) {
+                        // Top Performing Class
+                        if let topClass = data.classPerformance.max(by: { $0.performanceScore < $1.performanceScore }) {
+                            Text("Top Performance: \(topClass.className) (\(Int(topClass.performanceScore))%)")
+                                .font(.headline)
+                        }
+                        Rectangle()
+                            .frame(height: 1)
+                        
+                        // Attention Needed Class (lowest score)
+                        if let lowClass = data.classPerformance.min(by: { $0.performanceScore < $1.performanceScore }) {
+                            Text("Attention Needed: \(lowClass.className) (\(Int(lowClass.performanceScore))%)")
+                                .font(.headline)
+                        }
+                        Rectangle()
+                            .frame(height: 1)
+                        // Most Improved Class (from classNotes)
+                        if let improvedClass = data.classNotes.first(where: { $0.performanceCategory.lowercased() == "most improved" }) {
+                            Text("Most Improved: \(improvedClass.className) (\(Int(improvedClass.percentage))%)")
+                                .font(.headline)
+                            }
+                    }
+                    .padding()
+                    
+                } else if viewModel.isLoading {
+                    ProgressView("Loading...")
+                } else if let error = viewModel.errorMessage {
+                    Text("Error: \(error)")
+                        .foregroundColor(.red)
+                }
+                
+            } // VStack
+            .padding()
+        } // ScrollView
+    }
+    .task {
+        await viewModel.loadDashboard()
+    }
 }
-
-
-#Preview {
-    TeacherDashboard()
 }
-
-
