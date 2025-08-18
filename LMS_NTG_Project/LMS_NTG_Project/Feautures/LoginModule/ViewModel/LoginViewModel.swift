@@ -91,18 +91,6 @@ class Login_ViewModel : ObservableObject {
        
         isLoggedIn = false
         isLoggedOut = true
-
-    }
+}
     
 }
-
-
-
-
-
-
-
-
-
-
-

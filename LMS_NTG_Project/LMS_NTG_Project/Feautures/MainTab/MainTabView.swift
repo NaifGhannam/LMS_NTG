@@ -18,6 +18,7 @@ struct MainTabView: View {
             case 1: // admin
              
                 Profile(logoutViewModel: loginViewModel)
+                
                     .tabItem {
                         Image("Profile")
                         Text("profile")

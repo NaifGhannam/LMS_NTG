@@ -63,7 +63,7 @@ enum APIEndpoint {
             return "api/v1/sessions"
             
         case .getProfile(let id):
-            return "api/v1/accounts/\(id)"
+            return "api/v1/users/\(id)"
 
         case .gradeSubjects:
             return "api/v1/grade-subjects"

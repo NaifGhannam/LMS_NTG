@@ -15,14 +15,17 @@ struct SplashView: View {
     @State private var isActive = false
     @State private var size = 0.8
     @State private var opacity = 0.6
+    @EnvironmentObject var languageManager: LanguageManager
 
     var body: some View {
         
         if isActive == true {
             if UserDefaults.standard.bool(forKey: "isLoggedIn") {
                               MainTabView()
+                    .environmentObject(languageManager)
                           } else {
                               LoginView()
+                                  .environmentObject(languageManager)
                           }
         } else {
             VStack{
