@@ -15,7 +15,8 @@ struct LMS_NTG_ProjectApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                SplashView()
+                //SplashView()
+                TakeAttendanceView()
                 
             }.environmentObject(languageManager)
         }

@@ -21,7 +21,7 @@ struct Users: Hashable, Codable {
     let photo: String?
     let nationalId: String
     let isDeleted: Bool
-    let joinedOn: String
+    let joinedOn: String?
     let leftOn: String?
     let account: Accounts
 }

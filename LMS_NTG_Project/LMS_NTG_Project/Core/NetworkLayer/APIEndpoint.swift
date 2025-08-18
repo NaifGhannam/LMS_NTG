@@ -8,8 +8,8 @@
 import Foundation
 
 enum APIEndpoint {
+    
     case login
-//    case updateProfile(id: Int)
     case requestReset
     case verifyResetCode
     case resetPassword
@@ -24,6 +24,8 @@ enum APIEndpoint {
     case changePassword
     case getGradesDetails(userId: Int, subjectId: Int)
     case getStudent(id: Int)
+    case getTeacherEntity(id: Int)
+    case takeAttendance
     
     var baseURL: String {
         return "http://196.221.167.63:8080/"
@@ -34,9 +36,6 @@ enum APIEndpoint {
             
         case .login:
             return "api/v1/accounts/login"
-            
-            //        case .updateProfile(let id):
-            //            return "/users/\(id)"
             
         case .requestReset:
             return "api/v1/accounts/request-reset"
@@ -79,13 +78,20 @@ enum APIEndpoint {
             
         case .getStudent(let id):
             return "api/v1/attendances/\(id)/students"
+            
+        case .getTeacherEntity(let id):
+            return "api/v1/attendances/teacher-entity/\(id)"
+            
+        case .takeAttendance:
+            return "api/v1/student_attendances/bulk"
         }
     }
 
     var method: HTTPMethod {
         switch self {
-        case .login: return .post
-//        case .updateProfile: return .put
+            
+        case .login:
+            return .post
             
         case .requestReset:
             return .post
@@ -128,6 +134,12 @@ enum APIEndpoint {
             
         case .getStudent:
             return .get
+            
+        case .getTeacherEntity:
+            return .get
+            
+        case .takeAttendance:
+            return .post
         }
     }
 

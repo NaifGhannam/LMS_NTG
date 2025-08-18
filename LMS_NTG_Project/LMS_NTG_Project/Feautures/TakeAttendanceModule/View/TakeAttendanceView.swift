@@ -11,6 +11,7 @@ struct TakeAttendanceView: View {
     
     @State var isSelectAll: Bool = false
     @StateObject private var viewModel = TakeAttendanceViewModel()
+    @State private var selectedAttendanceSession: AttendanceResponse?
     
     var body: some View {
         VStack {
@@ -18,12 +19,25 @@ struct TakeAttendanceView: View {
             
             VStack {
                 Menu {
-                    
+                    ForEach(viewModel.sessions ?? []) { session in
+                        Button(action: { selectedAttendanceSession = session}) {
+                            Text("\(session.session.classEntity.className), \(session.session.gradeSubject.subject.subjectName) (\(session.session.sessionDate))")
+                                .font(.system(size: 16, weight: .medium))
+                                .foregroundColor(.black)
+                        }
+                    }
                 } label: {
                     HStack {
-                        Text("Class")
-                            .font(.system(size: 16, weight: .medium))
-                            .foregroundColor(.black)
+                        
+                        if let session = selectedAttendanceSession?.session {
+                            Text("\(session.classEntity.className), \(session.gradeSubject.subject.subjectName) (\(session.sessionDate))")
+                                .font(.system(size: 16, weight: .medium))
+                                .foregroundColor(.black)
+                        } else {
+                            Text("Select session")
+                                .font(.system(size: 16, weight: .medium))
+                                .foregroundColor(.gray)
+                        }
                         
                         Spacer()
                         
@@ -58,14 +72,14 @@ struct TakeAttendanceView: View {
                     
                     
                     List {
-                        ForEach(0..<10) { item in
+                        ForEach(viewModel.students ?? []) { student in
                             
                             VStack(alignment: .center, spacing: 0) {
                                 
                                 Divider()
                                     .background(.black)
                                 
-                                Text("John Doe")
+                                Text("\(student.user.firstName) \(student.user.middleName ?? "") \(student.user.lastName)")
                                     .font(.system(size: 16, weight: .medium))
                                     .foregroundColor(.black.opacity(0.65))
                                     .frame(maxWidth: .infinity)
@@ -73,12 +87,8 @@ struct TakeAttendanceView: View {
                                     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                         
                                         Button(action: {}) {
-                                            HStack {
-                                                Image("")
-                                                
-                                                Text("Mark As Present")
-                                                    .font(.system(size: 16, weight: .medium))
-                                            }
+                                            Text("Mark As Present")
+                                                .font(.system(size: 16, weight: .medium))
                                         }
                                         .tint(Color.primaryGreen)
                                     }
@@ -122,7 +132,11 @@ struct TakeAttendanceView: View {
                     
                     Spacer()
                     
-                    Button(action: {}) {
+                    Button(action: {
+                        Task {
+                            await viewModel.takeAttendance()
+                        }
+                    }) {
                         Text("Save Attendance")
                             .font(.system(size: 16, weight: .semibold))
                     }
@@ -138,9 +152,12 @@ struct TakeAttendanceView: View {
             .padding(.horizontal, 25)
             
             Spacer()
+            
+            Text(viewModel.errorMessage ?? "No Error")
+            Text(viewModel.message ?? "No Message")
         }
         .task {
-            await viewModel.getStudents()
+            //await viewModel.fetchData()
         }
     }
 }
